@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Quicksand");
+@import url("/your-path-to-uicons/css/uicons-rounded-bold.css");
 
 * {
 	margin: 0;
@@ -6,6 +7,13 @@
 	box-sizing: border-box;
 	font-family: Quicksand;
 	font-weight: 700;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    
 }
 
 nav {
@@ -46,4 +54,50 @@ nav {
 		display: flex;
 		gap: 1em;
 	}
+}
+
+
+
+
+
+
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-right: auto;
+    background-color: antiquewhite;
+    
+
+
+    .links{
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        justify-content: space-between;
+        flex: 1;
+
+        div{
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        a{
+            height: 100%;
+            padding: 1em 2em;
+        }
+
+        a:hover{
+            background-color: red;
+        }
+
+    }
+
+}
+
+
+
+.content{
+    background-color: #eef0f4;
 }
