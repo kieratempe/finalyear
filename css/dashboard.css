@@ -1,34 +1,49 @@
 @import url("https://fonts.googleapis.com/css?family=Quicksand");
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Quicksand;
-  font-weight: 700;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Quicksand;
+	font-weight: 700;
 }
 
-nav{
-    display: flex;
-    justify-content: space-between;
-    background-color: #f7f3fa;
-    padding: 1em;
+nav {
+	display: flex;
+	justify-content: flex-end;
+	background-color: #f7f3fa;
+	padding: 1em;
+    gap: 1em;
 
-    
-
-    img{
-        width: 20px;
+    h1{
+        margin-right: auto;
     }
 
-    input{
-        padding: 6px 12px;
-        border-radius: 20px;
-        border: 1px solid grey;
-    }
+	img {
+		width: 1.5em;
+	}
 
-    div{
-        display: flex;
-        gap: 1em;
-    }
+	.searchbar {
+		position: relative;
+	}
 
+	.searchbar img {
+		width: 1em;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 12px;
+		margin: auto;
+	}
+
+	input {
+		padding: 0.6em 2.5em 0.6em;
+		border-radius: 20px;
+		border: 1px solid grey;
+	}
+
+	div {
+		display: flex;
+		gap: 1em;
+	}
 }
