@@ -57,30 +57,60 @@ body {
 .login-area {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 15px;
   padding: 10px;
 
   .inputs {
     display: flex;
     flex-direction: column;
-    gap: 6px;
     border-radius: 10px;
+    position: relative;
 
     input {
       font-size: 1.2rem;
       padding: 10px;
-      border-radius: 10px;
+      border-radius: 5px;
       border: none;
-      padding: 10px;
       background-color: #f0eff5;
       border: 1px solid grey;
     }
+
+    .placeholder{
+      position: absolute;
+      top: 11px;
+      left: 11px;
+      font-size: 1.2rem;
+      pointer-events: none;
+      transition: .3s;
+      color: grey;
+      
+    }
+
+
+    input:focus, input:valid{
+      background-color: white;
+
+    }
+    
+    input:focus + .placeholder,
+    input:valid + .placeholder{
+
+      transform: translateX(10px);
+      transform: translateY(-17px);
+      font-size: 0.7rem;
+      padding: 0 10px;
+      background-color: white;
+      color: black;
+
+    }
+
   }
 
   .loginbutton {
     display: flex;
 
     button {
+      margin-top: 1em;
       border: none;
       font-size: 1.2rem;
       padding: 10px;
