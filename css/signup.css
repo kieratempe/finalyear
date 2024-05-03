@@ -113,16 +113,18 @@ body {
 				}
 			}
 
-			span {
+
+
+			input {
+				padding-left: 3.5em;
+			}
+
+      span {
 				margin-left: 10px;
 				position: absolute;
 				color: rgb(0, 0, 0);
 				border-right: 2px solid grey;
 				padding-right: 10px;
-			}
-
-			input {
-				padding-left: 3.5em;
 			}
 		}
 
@@ -142,6 +144,7 @@ body {
 		}
 	}
 
+  
 	.bottomlogin {
 		text-align: center;
 
@@ -243,7 +246,16 @@ body {
 		transform: translateY(-15px);
 	}
 
-	.input-section .signup-form button {
+  .input-section .signup-form .phonenumber .inputboxphone label{
+    top: 10px;
+  }
+
+
+
+  
+  
+  
+  .input-section .signup-form button {
 		padding: 10px;
 	}
 
@@ -255,4 +267,8 @@ body {
 	.name {
 		flex-direction: column;
 	}
+
+  
+
+
 }
