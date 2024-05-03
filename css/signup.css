@@ -33,125 +33,114 @@ body {
 	padding: 1em;
 	background-color: #f7f3fa;
 	border-radius: 0 10px 10px 0;
+}
 
-	.signup-instruction {
-		h1 {
-			font-size: 2em;
-		}
+.signup-instruction h1 {
+	font-size: 2em;
+}
 
-		span {
-			font-size: 0.8em;
-		}
-	}
+.signup-instruction span {
+	font-size: 0.8em;
+}
 
-	.signup-form {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5em;
+.signup-form {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5em;
+}
 
-		input {
-			border: 1px solid grey;
-			padding: 6px 10px;
-			border-radius: 10px;
-			background-color: #f0eff5;
-			flex: 1;
-			transition: 0.3s;
-		}
+.signup-form input {
+	border: 1px solid grey;
+	padding: 6px 10px;
+	border-radius: 10px;
+	background-color: #f0eff5;
+	flex: 1;
+	transition: 0.3s;
+}
 
-		.inputbox {
-			flex: 1;
-			display: flex;
-			position: relative;
+input:focus,
+input:valid {
+	background-color: white;
+}
 
-			label {
-				position: absolute;
-				top: 6px;
-				left: 10px;
-				color: grey;
-				pointer-events: none;
-				padding: 0 0.5px;
-				transition: 0.3s;
-			}
-		}
+input:focus + .placeholder,
+input:valid + .placeholder {
+	transform: translateX(10px);
+	transform: translateY(-10px);
+	font-size: 0.5rem;
+	padding: 0 10px;
+	background-color: black;
+	color: white;
+}
 
-		button {
-			background-color: hsl(303, 39%, 74%);
-			margin-top: 1em;
-			padding: 6px 12px;
-			border-radius: 10px;
-			border: 1px solid b;
-		}
+.inputbox {
+	flex: 1;
+	display: flex;
+	position: relative;
+}
 
-		.name {
-			flex: 1;
-			display: flex;
-			gap: 10px;
-			display: flex;
+.inputbox label {
+	position: absolute;
+	top: 6px;
+	left: 10px;
+	color: grey;
+	pointer-events: none;
+	padding: 0 0.5px;
+	transition: 0.3s;
+}
 
-			input {
-				flex: 1;
-			}
-		}
+.signup-form button {
+	background-color: hsl(303, 39%, 74%);
+	margin-top: 1em;
+	padding: 6px 12px;
+	border-radius: 10px;
+	border: 1px solid b;
+}
 
-		.phonenumber {
-			display: flex;
-			align-items: center;
+.name {
+	flex: 1;
+	display: flex;
+	gap: 10px;
+	display: flex;
+}
 
-			.inputboxphone {
-				flex: 1;
-				display: flex;
-				position: relative;
+.name input {
+	flex: 1;
+}
 
-				label {
-					position: absolute;
-					top: 6px;
-					left: 56px;
-					color: grey;
-					pointer-events: none;
-					padding: 0 0.5px;
-					transition: 0.3s;
-				}
-			}
+.phonenumber {
+	display: flex;
+	align-items: center;
+}
 
+.phonenumber .inputbox {
+	flex: 1;
+	display: flex;
+	position: relative;
+}
 
+.phonenumber .inputbox label {
+	left: 56px;
+}
 
-			input {
-				padding-left: 3.5em;
-			}
+.phonenumber input {
+	padding-left: 3.5em;
+}
 
-      span {
-				margin-left: 10px;
-				position: absolute;
-				color: rgb(0, 0, 0);
-				border-right: 2px solid grey;
-				padding-right: 10px;
-			}
-		}
+.phonenumber span {
+	margin-left: 10px;
+	position: absolute;
+	color: rgb(0, 0, 0);
+	border-right: 2px solid grey;
+	padding-right: 10px;
+}
 
-		input:focus,
-		input:valid {
-			background-color: white;
-		}
+.donthaveaccount {
+	text-align: center;
+}
 
-		input:focus + .placeholder,
-		input:valid + .placeholder {
-			transform: translateX(10px);
-			transform: translateY(-10px);
-			font-size: 0.5rem;
-			padding: 0 10px;
-			background-color: black;
-			color: white;
-		}
-	}
-
-  
-	.bottomlogin {
-		text-align: center;
-
-		a {
-			color: blue;
-		}
-	}
+.donthaveaccount a {
+	color: blueviolet;
 }
 
 .image-section {
@@ -163,29 +152,29 @@ body {
 	background-size: cover;
 	border-radius: 10px 0px 0px 10px;
 	position: relative;
+}
 
-	.logotext {
-		color: white;
-		margin: 10px 20px;
-		position: absolute;
-		top: 0;
-		left: 0;
-	}
+.logotext {
+	color: white;
+	margin: 10px 20px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
 
-	.welcome {
-		display: flex;
-		flex-direction: column;
-		color: white;
-		margin: 5em;
+.welcome {
+	display: flex;
+	flex-direction: column;
+	color: white;
+	margin: 5em;
+}
 
-		span {
-			font-size: 0.8em;
-		}
+.welcome span {
+	font-size: 0.8em;
+}
 
-		h1 {
-			font-size: 1.5em;
-		}
-	}
+.welcome h1 {
+	font-size: 1.5em;
 }
 
 @media (max-width: 800px) {
@@ -199,10 +188,10 @@ body {
 
 	.image-section {
 		border-radius: 10px 10px 0 0;
+	}
 
-		.welcome {
-			margin: 35px;
-		}
+	.welcome {
+		margin: 35px;
 	}
 
 	.welcome {
@@ -219,17 +208,17 @@ body {
 		background-color: none;
 	}
 
-	.input-section .signup-form input {
-		border: 1px solid grey;
+	.signup-form input {
 		padding: 10px 10px;
-		border-radius: 10px;
-		background-color: #f0eff5;
+	}
+
+	.phonenumber input {
+		padding-left: 3.5em;
 	}
 
 	.container {
 		width: 100%;
 		box-shadow: none;
-		align-items: stretch;
 		flex: 1;
 	}
 
@@ -237,25 +226,16 @@ body {
 		justify-content: space-evenly;
 	}
 
-	.input-section .signup-form .inputbox label {
+	.inputbox label {
 		top: 10px;
 	}
 
-	.input-section .signup-form input:focus + .placeholder,
-	.input-section .signup-form input:valid + .placeholder {
+	.signup-form input:focus + .placeholder,
+	.signup-form input:valid + .placeholder {
 		transform: translateY(-15px);
 	}
 
-  .input-section .signup-form .phonenumber .inputboxphone label{
-    top: 10px;
-  }
-
-
-
-  
-  
-  
-  .input-section .signup-form button {
+	.input-section .signup-form button {
 		padding: 10px;
 	}
 
@@ -267,8 +247,4 @@ body {
 	.name {
 		flex-direction: column;
 	}
-
-  
-
-
 }
