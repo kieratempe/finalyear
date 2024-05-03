@@ -47,12 +47,13 @@ body {
 	display: flex;
 	flex-direction: column;
 	gap: 0.5em;
+	
 }
 
 .signup-form input {
 	border: 1px solid grey;
 	padding: 6px 10px;
-	border-radius: 10px;
+	border-radius: 5px;
 	background-color: #f0eff5;
 	flex: 1;
 	transition: 0.3s;
@@ -93,8 +94,12 @@ input:valid + .placeholder {
 	background-color: hsl(303, 39%, 74%);
 	margin-top: 1em;
 	padding: 6px 12px;
-	border-radius: 10px;
-	border: 1px solid b;
+	border-radius: 5px;
+	border: 1px solid black;;
+}
+
+.signup-form button:hover{
+	background-color: hsl(303, 54%, 64%);
 }
 
 .name {
@@ -135,12 +140,16 @@ input:valid + .placeholder {
 	padding-right: 10px;
 }
 
-.donthaveaccount {
+.alreadyaccount {
 	text-align: center;
 }
 
-.donthaveaccount a {
-	color: blueviolet;
+.alreadyaccount a {
+	color: hsl(271, 58%, 63%);
+}
+
+.alreadyaccount a:hover{
+	color:rgb(116, 0, 224)
 }
 
 .image-section {
