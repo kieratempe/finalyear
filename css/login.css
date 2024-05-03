@@ -43,86 +43,85 @@ body {
 	align-items: center;
 }
 
-.logo-area	span {
-		font-size: 1.5em;
-	}
+.logo-area span {
+	font-size: 1.5em;
+}
 
-.logo-area	img {
-		width: 50%;
-	}
-
+.logo-area img {
+	width: 50%;
+}
 
 .login-area {
 	display: flex;
 	flex-direction: column;
 	gap: 15px;
 	padding: 10px;
+}
 
-	.inputs {
-		display: flex;
-		flex-direction: column;
-		border-radius: 10px;
-		position: relative;
+.inputs {
+	display: flex;
+	flex-direction: column;
+	border-radius: 10px;
+	position: relative;
+}
 
-		input {
-			font-size: 1.2rem;
-			padding: 10px;
-			border-radius: 5px;
-			border: none;
-			background-color: #f0eff5;
-			border: 1px solid grey;
-		}
+.inputs input {
+	font-size: 1.2rem;
+	padding: 10px;
+	border-radius: 5px;
+	border: none;
+	background-color: #f0eff5;
+	border: 1px solid grey;
+}
 
-		.placeholder {
-			position: absolute;
-			top: 11px;
-			left: 11px;
-			font-size: 1.2rem;
-			pointer-events: none;
-			transition: 0.3s;
-			color: grey;
-		}
+.placeholder {
+	position: absolute;
+	top: 11px;
+	left: 11px;
+	font-size: 1.2rem;
+	pointer-events: none;
+	transition: 0.3s;
+	color: grey;
+}
 
-		input:focus,
-		input:valid {
-			background-color: white;
-		}
+input:focus,
+input:valid {
+	background-color: white;
+}
 
-		input:focus + .placeholder,
-		input:valid + .placeholder {
-			transform: translateX(10px);
-			transform: translateY(-17px);
-			font-size: 0.7rem;
-			padding: 0 10px;
-			background-color: black;
-			color: white;
-		}
-	}
+input:focus + .placeholder,
+input:valid + .placeholder {
+	transform: translateX(10px);
+	transform: translateY(-17px);
+	font-size: 0.7rem;
+	padding: 0 10px;
+	background-color: black;
+	color: white;
+}
 
-	.loginbutton {
-		display: flex;
+.loginbutton {
+	display: flex;
+}
 
-		button {
-			margin-top: 1em;
-			border: none;
-			font-size: 1.2rem;
-			padding: 10px;
-			border-radius: 10px;
-			flex: 1;
-			color: white;
-			background-color: hsl(203, 100%, 50%);
-			border: 1px solid black;
-		}
-	}
+.loginbutton button {
+	margin-top: 1em;
+	border: none;
+	font-size: 1.2rem;
+	padding: 10px;
+	border-radius: 10px;
+	flex: 1;
+	color: white;
+	background-color: hsl(203, 100%, 50%);
+	border: 1px solid black;
 }
 
 .signup-area {
 	text-align: center;
 	margin: 6px;
+}
 
-	a {
-		color: blue;
-	}
+.signup-area a {
+	color: violet;
 }
 
 @media (max-width: 500px) {
