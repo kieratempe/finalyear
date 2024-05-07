@@ -10,94 +10,69 @@
 }
 
 body{
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    
-}
-
-nav {
+    height: 100dvh;
 	display: flex;
-	justify-content: flex-end;
-	background-color: #f7f3fa;
-	padding: 1em;
-    gap: 1em;
-
-    h1{
-        margin-right: auto;
-    }
-
-	img {
-		width: 1.5em;
-	}
-
-	.searchbar {
-		position: relative;
-	}
-
-	.searchbar img {
-		width: 1em;
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: 12px;
-		margin: auto;
-	}
-
-	input {
-		padding: 0.6em 2.5em 0.6em;
-		border-radius: 20px;
-		border: 1px solid grey;
-	}
-
-	div {
-		display: flex;
-		gap: 1em;
-	}
-}
-
-
-
-
-
-
-.sidebar{
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    margin-right: auto;
-    background-color: antiquewhite;
     
-
-
-    .links{
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-        justify-content: space-between;
-        flex: 1;
-
-        div{
-            display: flex;
-            flex-direction: column;
-        }
-
-
-        a{
-            height: 100%;
-            padding: 1em 2em;
-        }
-
-        a:hover{
-            background-color: red;
-        }
-
-    }
-
 }
+
+.side-bar{
+	margin-right: 10px;
+	border: 1px solid red;
+}
+
+.links-container{
+	display: none;
+	flex-direction: column;
+	background-color: rgb(223, 196, 225);
+	width: 10em;
+	transition: .75s ease-out;
+	height: 100%;
+	justify-content: center;
+}
+
+.links-container label{
+	text-align: center;
+	padding: 10px;
+	background-color: aliceblue;
+}
+
+.links-container a{
+	text-decoration: none;
+	padding: 1em;
+	border: 1px solid rgb(87, 87, 255);
+}
+
+.links-container a:hover{
+	background-color: rgb(209, 105, 216); ;
+}
+
+#sidebar-active{
+	display: none;
+}
+
+#sidebar-active:checked ~ .links-container{
+	display: flex;
+}
+
+#sidebar-active:checked ~ label{
+	display: none;
+}
+
+.icon{
+	width: 2em;
+}
+
+
+
+
+
+
+
+
+
 
 
 
 .content{
-    background-color: #eef0f4;
+	border:1px solid green;
 }

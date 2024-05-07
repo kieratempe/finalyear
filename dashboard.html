@@ -1,45 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
-		<link rel="stylesheet" href="./css/dashboard.css" />
-	</head>
-	<body>
-		<nav>
-			<h1>HR HARMONY</h1>
-			<div class="searchbar">
-				<input type="text" placeholder="Search..." />
-				<img src="./img/icons/magnifying.svg" />
-			</div>
-			<div>
-				<img src="./img/icons/notification.svg" />
-				<img src="./img/icons/account.svg" />
-			</div>
-		</nav>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./css/dashboard.css">
+	<title>Document</title>
+</head>
+<body>
 
-		<div class="sidebar">
-			<div class="links">
-				<div>
-					<a href="#">Dashboard</a>
-				</div>
 
-				<div>
-					<a href="#">Apply Leave</a>
-					<a href="#">Appraisal</a>
-					<a href="#">Task</a>
-					<a href="#">Payslip</a>
-					<a href="#">Training</a>
-				</div>
 
-				<div>
-					<a href="#">Account</a>
-					<a href="#">Logout</a>
-				</div>
-			</div>
-		</div>
 
-		<div class="content"></div>
-	</body>
+<div class="side-bar">
+		<input type="checkbox" id="sidebar-active">
+		<label for="sidebar-active">
+			<img class="icon" src="./img/icons/menu.svg">
+		</label>
+
+
+	<div class="links-container">
+		<label for="sidebar-active">
+			<img class="icon" src="./img//icons/close.svg">
+		</label>
+
+
+		<a href="#">Dashboard</a>
+		<a href="#">Apply Leave</a>
+		<a href="#"> Appraisal</a>
+		<a href="#">Task</a>
+		<a href="#">Payslip</a>
+		<a href="#">Training</a>
+		<a href="#">Account</a>
+		<a href="#">Logout</a>
+	</div>
+</div>
+
+<div class="content">
+	<div class="header">
+		<span>HR HAMONRY</span>
+	</div>
+</div>
+
+
+	
+</body>
 </html>
