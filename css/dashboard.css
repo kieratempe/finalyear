@@ -17,7 +17,6 @@ body{
 
 .side-bar{
 	margin-right: 10px;
-	border: 1px solid red;
 }
 
 .links-container{
@@ -62,6 +61,12 @@ body{
 	width: 2em;
 }
 
+
+@media (max-width:500px){
+	#sidebar-active:checked ~ .links-container{
+		position: fixed;
+	}
+}
 
 
 
