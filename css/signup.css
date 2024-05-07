@@ -16,7 +16,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	height: 100dvh;
-	transition: .3s;
+	transition: 0.3s;
 }
 
 .container {
@@ -48,7 +48,6 @@ body {
 	display: flex;
 	flex-direction: column;
 	gap: 0.5em;
-	
 }
 
 .signup-form input {
@@ -96,10 +95,10 @@ input:valid + .placeholder {
 	margin-top: 1em;
 	padding: 6px 12px;
 	border-radius: 5px;
-	border: 1px solid black;;
+	border: 1px solid black;
 }
 
-.signup-form button:hover{
+.signup-form button:hover {
 	background-color: hsl(303, 54%, 64%);
 }
 
@@ -149,8 +148,8 @@ input:valid + .placeholder {
 	color: hsl(271, 58%, 63%);
 }
 
-.alreadyaccount a:hover{
-	color:rgb(116, 0, 224)
+.alreadyaccount a:hover {
+	color: rgb(116, 0, 224);
 }
 
 .image-section {
