@@ -69,3 +69,21 @@ body {
 .content {
 	border: 1px solid green;
 }
+
+.header {
+	display: flex;
+}
+
+.search-bar {
+	position: relative;
+}
+
+.search-bar input {
+	padding: 6px 12px;
+	border-radius: 20px;
+}
+
+.search-bar img {
+	position: absolute;
+	left: 0;
+}
