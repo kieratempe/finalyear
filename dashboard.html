@@ -3,39 +3,30 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="./css/dashboard.css" />
 		<title>Document</title>
+		<link rel="stylesheet" href="css/dashboard.css" />
 	</head>
 	<body>
-		<div class="side-bar">
-			<input type="checkbox" id="sidebar-active" />
-			<label for="sidebar-active">
-				<img class="icon" src="./img/icons/menu.svg" />
-			</label>
+		<div class="sidebar">
+			<div class="sidebar-links">
+				<div class="sidebar-item">
+					<a href="#"> <img src="img/icons/dashboard.svg" />Dashboard</a>
+				</div>
 
-			<div class="links-container">
-				<label for="sidebar-active">
-					<img class="icon" src="./img//icons/close.svg" />
-				</label>
+				<div class="sidebar-item">
+					<a href="#"><img src="img/icons/tasks.svg" /> Task</a>
+				</div>
 
-				<a href="#">Dashboard</a>
-				<a href="#">Apply Leave</a>
-				<a href="#"> Appraisal</a>
-				<a href="#">Task</a>
-				<a href="#">Payslip</a>
-				<a href="#">Training</a>
-				<a href="#">Account</a>
-				<a href="#">Logout</a>
-			</div>
-		</div>
+				<div class="sidebar-item">
+					<a href="#"> <img src="img/icons/payment.svg" />Payslip</a>
+				</div>
 
-		<div class="content">
-			<div class="header">
-				<span>HR HAMONRY</span>
+				<div class="sidebar-item">
+					<a href="#"> <img src="img/icons/training.svg" />Training</a>
+				</div>
 
-				<div class="search-bar">
-					<input type="text" placeholder="Search..." />
-					<img src="./img/icons/search.svg" />
+				<div class="sidebar-item">
+					<a href="#"> <img src="img/icons/exit.svg" />Logout</a>
 				</div>
 			</div>
 		</div>
