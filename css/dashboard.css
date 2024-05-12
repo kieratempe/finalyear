@@ -17,7 +17,7 @@ body {
 .sidebar-links {
 	display: flex;
 	flex-direction: column;
-	background-color: rgb(215, 204, 255);
+	background-color: rgb(196, 180, 255);
 	height: 100%;
 	justify-content: center;
 }
@@ -29,6 +29,7 @@ body {
 	flex: 1;
 	display: flex;
 	gap: 2em;
+	font-size: 0.9em;
 }
 
 .sidebar-item a:hover {
@@ -43,4 +44,43 @@ body {
 
 .sidebar-item a:nth-child(1) {
 	order: 1;
+}
+
+.main {
+	flex: 1;
+}
+
+.header {
+	padding: 10px;
+	display: flex;
+	justify-content: flex-end;
+	background-color: rgb(133, 255, 255);
+	gap: 1em;
+	font-size: 0.8em;
+}
+
+.header h1 {
+	margin-right: auto;
+}
+
+.header img {
+	width: 25px;
+}
+
+.searchbar {
+	position: relative;
+	align-content: center;
+}
+
+.searchbar input {
+	padding: 6px 60px 6px 40px;
+	border-radius: 20px;
+	border: 1px solid grey;
+	height: 100%;
+}
+
+.searchbar img {
+	position: absolute;
+	top: 5px;
+	left: 10px;
 }
