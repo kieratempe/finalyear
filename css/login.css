@@ -17,7 +17,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	height: 100dvh;
-	transition: 0.3s;
+	transition: .3s;
 	font-size: 18px;
 }
 
@@ -116,7 +116,7 @@ input:valid + .placeholder {
 	border: 1px solid black;
 }
 
-.loginbutton button:hover {
+.loginbutton button:hover{
 	background-color: hsl(203, 100%, 59%);
 }
 
@@ -129,8 +129,8 @@ input:valid + .placeholder {
 	color: rgb(247, 106, 247);
 }
 
-.signup-area a:hover {
-	color: hsl(300, 81%, 56%);
+.signup-area a:hover{
+	color:hsl(300, 81%, 56%);
 }
 
 @media (max-width: 500px) {
