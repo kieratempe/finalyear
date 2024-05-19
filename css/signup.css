@@ -50,8 +50,7 @@ body {
 	gap: 0.5em;
 }
 
-input,
-select {
+.signup-form input {
 	border: 1px solid grey;
 	padding: 6px 10px;
 	border-radius: 5px;
@@ -79,16 +78,6 @@ input:valid + .placeholder {
 	flex: 1;
 	display: flex;
 	position: relative;
-	align-items: center;
-}
-
-.inputbox:nth-child(6) {
-	margin: 1em 0;
-}
-
-.inputbox span {
-	padding-right: 2em;
-	color: grey;
 }
 
 .inputbox label {
