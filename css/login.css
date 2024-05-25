@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Quicksand");
 
+:root {
+	--p: #2580d0;
+	--phover: #005dae;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -9,7 +14,7 @@
 }
 
 body {
-	background-color: hsl(289, 23%, 85%);
+	background-color: hsl(210, 6%, 93%);
 }
 
 .login-body {
@@ -17,7 +22,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	height: 100dvh;
-	transition: .3s;
+	transition: 0.3s;
 	font-size: 18px;
 }
 
@@ -107,17 +112,16 @@ input:valid + .placeholder {
 .loginbutton button {
 	margin-top: 1em;
 	border: none;
-	font-size: 1.2rem;
-	padding: 10px;
-	border-radius: 10px;
+	font-size: 1em;
+	padding: 6px 12px;
+	border-radius: 20px;
 	flex: 1;
 	color: white;
-	background-color: hsl(203, 100%, 70%);
-	border: 1px solid black;
+	background-color: var(--p);
 }
 
-.loginbutton button:hover{
-	background-color: hsl(203, 100%, 59%);
+.loginbutton button:hover {
+	background-color: #005dae;
 }
 
 .signup-area {
@@ -126,11 +130,11 @@ input:valid + .placeholder {
 }
 
 .signup-area a {
-	color: rgb(247, 106, 247);
+	color: var(--p);
 }
 
-.signup-area a:hover{
-	color:hsl(300, 81%, 56%);
+.signup-area a:hover {
+	color: var(--phover);
 }
 
 @media (max-width: 500px) {

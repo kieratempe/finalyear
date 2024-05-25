@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Quicksand");
 
+:root {
+	--p: #2580d0;
+	--phover: #005dae;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -10,7 +15,7 @@
 }
 
 body {
-	background-color: #dccef0;
+	background-color: hsl(210, 6%, 93%);
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -102,15 +107,16 @@ input:valid + .placeholder {
 }
 
 .signup-form button {
-	background-color: hsl(303, 39%, 74%);
+	background-color: var(--p);
 	margin-top: 1em;
 	padding: 6px 12px;
-	border-radius: 5px;
-	border: 1px solid black;
+	border-radius: 20px;
+	border: none;
+	color: white;
 }
 
 .signup-form button:hover {
-	background-color: hsl(303, 54%, 64%);
+	background-color: #005dae;
 }
 
 .name {
@@ -156,15 +162,15 @@ input:valid + .placeholder {
 }
 
 .alreadyaccount a {
-	color: hsl(271, 58%, 63%);
+	color: var(--p);
 }
 
 .alreadyaccount a:hover {
-	color: rgb(116, 0, 224);
+	color: var(--phover);
 }
 
 .image-section {
-	background-image: url(../img/Freebie-GradientTextures-Preview-02.webp);
+	background-image: url(../img/signup.avif);
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
