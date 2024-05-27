@@ -126,26 +126,26 @@ input:valid + .placeholder {
 	flex-wrap: wrap;
 }
 
-.phonenumber {
+.inputbox-phone {
 	display: flex;
 	align-items: center;
 }
 
-.phonenumber .inputbox {
+.inputbox-phone .inputbox {
 	flex: 1;
 	display: flex;
 	position: relative;
 }
 
-.phonenumber .inputbox label {
+.inputbox-phone .inputbox label {
 	left: 56px;
 }
 
-.phonenumber input {
+.inputbox-phone input {
 	padding-left: 3.5em;
 }
 
-.phonenumber span {
+.inputbox-phone span {
 	margin-left: 10px;
 	position: absolute;
 	color: rgb(0, 0, 0);
@@ -153,15 +153,15 @@ input:valid + .placeholder {
 	padding-right: 10px;
 }
 
-.alreadyaccount {
+.go-to-sign-in {
 	text-align: center;
 }
 
-.alreadyaccount a {
+.go-to-sign-in a {
 	color: var(--p);
 }
 
-.alreadyaccount a:hover {
+.go-to-sign-in a:hover {
 	color: var(--phover);
 }
 
@@ -183,18 +183,18 @@ input:valid + .placeholder {
 	left: 0;
 }
 
-.welcome {
+.welcome-text-image {
 	display: flex;
 	flex-direction: column;
 	color: white;
 	margin: 5em;
 }
 
-.welcome span {
+.welcome-text-image span {
 	font-size: 0.8em;
 }
 
-.welcome h1 {
+.welcome-text-image h1 {
 	font-size: 1.5em;
 }
 
@@ -203,11 +203,11 @@ input:valid + .placeholder {
 		flex-direction: column;
 	}
 
-	.logotext {
+	.image-section > h1 {
 		display: none;
 	}
 
-	.welcome {
+	.welcome-text-image {
 		margin: 35px;
 		align-items: center;
 	}
@@ -226,7 +226,7 @@ input:valid + .placeholder {
 		padding: 10px 10px;
 	}
 
-	.phonenumber input {
+	.inputbox-phone input {
 		padding-left: 3.5em;
 	}
 
