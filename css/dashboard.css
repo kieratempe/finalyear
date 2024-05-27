@@ -2,9 +2,11 @@
 @import url("/your-path-to-uicons/css/uicons-rounded-bold.css");
 
 :root {
-	--primary: #a453af;
-	--secondary: #dfc9e1;
-	--accent: #dba0e3;
+	--p: #2580d0;
+	--main: #e9cfff;
+	--border: #d870e1;
+	--phover: #005dae;
+	--accent: #5950ff;
 }
 
 * {
@@ -23,7 +25,7 @@ body {
 .sidebar-links {
 	display: flex;
 	flex-direction: column;
-	background-color: var(--secondary);
+	background-color: var(--main);
 	height: 100%;
 	justify-content: center;
 }
@@ -32,8 +34,8 @@ body {
 	align-self: center;
 	width: 7em;
 	margin: 10px auto 20px;
-	border: 1px solid var(--primary);
-	background-color: var(--accent);
+	border: 1px solid var(--main);
+	background-color: var(--p);
 	border-radius: 30px;
 }
 
@@ -41,16 +43,14 @@ body {
 	padding: 20px;
 	text-decoration: none;
 	color: black;
-	flex: 1;
 	display: flex;
+	align-items: center;
 	gap: 2em;
 	font-size: 0.9em;
-	border: 1px solid #ffffff00;
 }
 
 .sidebar-item a:hover {
 	background-color: var(--accent);
-	border: 1px solid var(--primary);
 	color: white;
 }
 
@@ -69,7 +69,7 @@ body {
 	padding: 10px;
 	display: flex;
 	justify-content: flex-end;
-	background-color: var(--accent);
+	background-color: var(--p);
 	gap: 1em;
 	font-size: 0.8em;
 }
@@ -90,7 +90,7 @@ body {
 .searchbar input {
 	padding: 6px 40px;
 	border-radius: 20px;
-	border: 1px solid grey;
+	border: none;
 	height: 100%;
 }
 
@@ -123,12 +123,15 @@ body {
 
 .card {
 	flex: 1;
-	width: 15em;
-	height: 10em;
+	height: 7em;
 	padding: 10px;
-	background-color: #dfc9e1;
+	background-color: var(--main);
 	border-radius: 10px;
-	border: 1px solid var(--primary);
+	border: 2px solid #d870e1;
+}
+
+.card span {
+	font-size: 0.8em;
 }
 
 .test {
@@ -136,6 +139,5 @@ body {
 	background-color: #dfc9e1;
 	margin-top: 10px;
 	border-radius: 10px;
-	flex: 1;
 	border: 1px solid var(--primary);
 }
