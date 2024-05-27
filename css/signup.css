@@ -123,6 +123,7 @@ input:valid + .placeholder {
 .name {
 	gap: 10px;
 	display: flex;
+	flex-wrap: wrap;
 }
 
 .phonenumber {
@@ -249,7 +250,7 @@ input:valid + .placeholder {
 		height: 20%;
 	}
 
-	.name {
-		flex-wrap: wrap;
+	input {
+		padding: 10px;
 	}
 }
