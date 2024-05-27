@@ -3,6 +3,7 @@
 :root {
 	--p: #2580d0;
 	--phover: #005dae;
+	--accent: #5950ff;
 }
 
 * {
@@ -34,7 +35,7 @@ body {
 	flex: 1;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: space-evenly;
 	gap: 1em;
 	padding: 1em;
 	background-color: #f7f3fa;
@@ -57,7 +58,7 @@ body {
 
 input,
 select {
-	border: 1px solid grey;
+	border: 2px solid #d8d7db;
 	padding: 6px 10px;
 	border-radius: 5px;
 	background-color: #f0eff5;
@@ -68,6 +69,7 @@ select {
 input:focus,
 input:valid {
 	background-color: white;
+	border: 2px solid var(--accent);
 }
 
 input:focus + .placeholder,
@@ -76,7 +78,7 @@ input:valid + .placeholder {
 	transform: translateY(-10px);
 	font-size: 0.5rem;
 	padding: 0 10px;
-	background-color: black;
+	background-color: var(--accent);
 	color: white;
 }
 
@@ -88,7 +90,7 @@ input:valid + .placeholder {
 }
 
 .inputbox:nth-child(6) {
-	margin: 1em 0;
+	margin: 1em 0 2em 0;
 }
 
 .inputbox span {
@@ -108,7 +110,6 @@ input:valid + .placeholder {
 
 .signup-form button {
 	background-color: var(--p);
-	margin-top: 1em;
 	padding: 6px 12px;
 	border-radius: 20px;
 	border: none;
@@ -120,14 +121,8 @@ input:valid + .placeholder {
 }
 
 .name {
-	flex: 1;
-	display: flex;
 	gap: 10px;
 	display: flex;
-}
-
-.name input {
-	flex: 1;
 }
 
 .phonenumber {
@@ -172,7 +167,6 @@ input:valid + .placeholder {
 .image-section {
 	background-image: url(../img/signup.avif);
 	display: flex;
-	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	background-size: cover;
@@ -182,7 +176,7 @@ input:valid + .placeholder {
 
 .logotext {
 	color: white;
-	margin: 10px 20px;
+	margin: 10px 15px;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -204,24 +198,21 @@ input:valid + .placeholder {
 }
 
 @media (max-width: 800px) {
-	.logotext {
-		display: none;
-	}
-
 	.container {
 		flex-direction: column;
 	}
 
-	.image-section {
-		border-radius: 10px 10px 0 0;
+	.logotext {
+		display: none;
 	}
 
 	.welcome {
 		margin: 35px;
+		align-items: center;
 	}
 
-	.welcome {
-		align-items: center;
+	.image-section {
+		border-radius: 10px 10px 0 0;
 	}
 
 	.input-section {
@@ -230,10 +221,6 @@ input:valid + .placeholder {
 }
 
 @media (max-width: 500px) {
-	body {
-		background-color: none;
-	}
-
 	.signup-form input {
 		padding: 10px 10px;
 	}
@@ -248,10 +235,6 @@ input:valid + .placeholder {
 		flex: 1;
 	}
 
-	.input-section {
-		justify-content: space-evenly;
-	}
-
 	.inputbox label {
 		top: 10px;
 	}
@@ -261,16 +244,12 @@ input:valid + .placeholder {
 		transform: translateY(-15px);
 	}
 
-	.input-section .signup-form button {
-		padding: 10px;
-	}
-
 	.image-section {
 		border-radius: 0;
 		height: 20%;
 	}
 
 	.name {
-		flex-direction: column;
+		flex-wrap: wrap;
 	}
 }
