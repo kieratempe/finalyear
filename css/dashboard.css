@@ -136,8 +136,9 @@ body {
 
 .test {
 	padding: 10px;
-	background-color: #dfc9e1;
 	margin-top: 10px;
 	border-radius: 10px;
-	border: 1px solid var(--primary);
+	border: 2px solid #d870e1;
+	background-color: var(--main);
+	height: 100%;
 }
