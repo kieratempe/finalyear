@@ -175,7 +175,7 @@ input:valid + .placeholder {
 	position: relative;
 }
 
-.logotext {
+.image-section > h1 {
 	color: white;
 	margin: 10px 15px;
 	position: absolute;
