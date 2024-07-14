@@ -23,48 +23,50 @@
 					<span>Create an account to access HR HARMONY</span>
 				</div>
 
-				<div class="signup-form">
-					<div class="name">
-						<div class="inputbox">
-							<input type="text" required="required" />
-							<label class="placeholder">First Name</label>
+				<div>
+					<form class="signup-form" action="register.php" method="post">
+						<div class="name">
+							<div class="inputbox">
+								<input name="first_name" type="text" required="required" />
+								<label class="placeholder">First Name</label>
+							</div>
+
+							<div class="inputbox">
+								<input name="last_name" type="text" required="required" />
+								<label class="placeholder">Last Name</label>
+							</div>
 						</div>
 
 						<div class="inputbox">
-							<input type="text" required="required" />
-							<label class="placeholder">Last Name</label>
+							<input name="email" type="text" required="required" />
+							<label class="placeholder">Email</label>
 						</div>
-					</div>
 
-					<div class="inputbox">
-						<input type="text" required="required" />
-						<label class="placeholder">Email</label>
-					</div>
+						<div class="phonenumber">
+							<div class="inputbox">
+								<input name="phone_number" type="text" required="required" />
+								<label class="placeholder">Phone Number</label>
+							</div>
+							<span>+60</span>
+						</div>
 
-					<div class="phonenumber">
 						<div class="inputbox">
-							<input type="text" required="required" />
-							<label class="placeholder">Phone Number</label>
+							<input name="ic_number" type="text" required="required" />
+							<label class="placeholder">IC Number</label>
 						</div>
-						<span>+60</span>
-					</div>
 
-					<div class="inputbox">
-						<input type="text" required="required" />
-						<label class="placeholder">IC Number</label>
-					</div>
+						<div class="inputbox">
+							<input name="position" type="text" required="required" />
+							<label class="placeholder">Position</label>
+						</div>
 
-					<div class="inputbox">
-						<input type="text" required="required" />
-						<label class="placeholder">Position</label>
-					</div>
+						<div class="inputbox">
+							<input name="password" type="password" required="required" />
+							<label class="placeholder">Password</label>
+						</div>
 
-					<div class="inputbox">
-						<input type="password" required="required" />
-						<label class="placeholder">Password</label>
-					</div>
-
-					<button>SIGN UP</button>
+						<button>SIGN UP</button>
+					</form>
 				</div>
 
 				<div class="alreadyaccount">
