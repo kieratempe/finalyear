@@ -23,34 +23,35 @@
 					<span>Create an account to access HR HARMONY</span>
 				</div>
 
-				<div class="signup-form">
+				<div>
+					<form class="signup-form" action="register.php" method="post">
 					<div class="name">
 						<div class="inputbox">
-							<input type="text" required="required" />
+								<input name="first_name" type="text" required="required" />
 							<label class="placeholder">First Name</label>
 						</div>
 
 						<div class="inputbox">
-							<input type="text" required="required" />
+								<input name="last_name" type="text" required="required" />
 							<label class="placeholder">Last Name</label>
 						</div>
 					</div>
 
 					<div class="inputbox">
-						<input type="text" required="required" />
+							<input name="email" type="text" required="required" />
 						<label class="placeholder">Email</label>
 					</div>
 
 					<div class="inputbox-phone">
 						<div class="inputbox">
-							<input type="text" required="required" />
+								<input name="phone_number" type="text" required="required" />
 							<label class="placeholder">Phone Number</label>
 						</div>
 						<span>+60</span>
 					</div>
 
 					<div class="inputbox">
-						<input type="text" required="required" />
+							<input name="ic_number" type="text" required="required" />
 						<label class="placeholder">IC Number</label>
 					</div>
 
@@ -71,6 +72,7 @@
 					</div>
 
 					<button>SIGN UP</button>
+					</form>
 				</div>
 
 				<div class="go-to-sign-in">
