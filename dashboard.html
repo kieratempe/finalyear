@@ -4,42 +4,85 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
-		<link rel="stylesheet" href="./css/dashboard.css" />
+		<link rel="stylesheet" href="css/dashboard.css" />
 	</head>
 	<body>
-		<nav>
-			<h1>HR HARMONY</h1>
-			<div class="searchbar">
-				<input type="text" placeholder="Search..." />
-				<img src="./img/icons/magnifying.svg" />
-			</div>
-			<div>
-				<img src="./img/icons/notification.svg" />
-				<img src="./img/icons/account.svg" />
-			</div>
-		</nav>
-
 		<div class="sidebar">
-			<div class="links">
-				<div>
-					<a href="#">Dashboard</a>
+			<div class="sidebar-links">
+				<img src="img/logo.png" class="logo" />
+
+				<div class="sidebar-item">
+					<a href="#"> <img src="img/icons/dashboard.svg" />Dashboard</a>
 				</div>
 
-				<div>
-					<a href="#">Apply Leave</a>
-					<a href="#">Appraisal</a>
-					<a href="#">Task</a>
-					<a href="#">Payslip</a>
-					<a href="#">Training</a>
+				<div class="sidebar-item">
+					<a href="#"><img src="img/icons/tasks.svg" /> Task</a>
 				</div>
 
-				<div>
-					<a href="#">Account</a>
-					<a href="#">Logout</a>
+				<div class="sidebar-item">
+					<a href="#"><img src="img/icons/appraisal.svg" /> Appraisal</a>
+				</div>
+
+				<div class="sidebar-item">
+					<a href="#"> <img src="img/icons/payment.svg" />Payslip</a>
+				</div>
+
+				<div class="sidebar-item">
+					<a href="#"> <img src="img/icons/training.svg" />Training</a>
+				</div>
+
+				<div class="sidebar-item">
+					<a href="#"><img src="img/icons/account.svg" /> Account</a>
+				</div>
+
+				<div class="sidebar-item">
+					<a href="#"> <img src="img/icons/exit.svg" />Logout</a>
 				</div>
 			</div>
 		</div>
 
-		<div class="content"></div>
+		<div class="main">
+			<div class="header">
+				<h1>HR HARMONY</h1>
+				<div class="searchbar">
+					<input type="search" placeholder="Search..." />
+					<img src="img/icons/search.svg" />
+				</div>
+				<img src="img/icons/notification.svg" />
+				<img src="img/icons/account.svg" />
+			</div>
+
+			<div class="dashboard-content">
+				<div class="title">
+					<h1>Dashboard</h1>
+				</div>
+
+				<div class="card-section">
+					<div class="card">
+						<span>Person</span>
+						<h2>Name</h2>
+					</div>
+
+					<div class="card">
+						<span>Person</span>
+						<h2>Name</h2>
+					</div>
+
+					<div class="card">
+						<span>Person</span>
+						<h2>Name</h2>
+					</div>
+
+					<div class="card">
+						<span>Person</span>
+						<h2>Name</h2>
+					</div>
+				</div>
+
+				<div class="test">
+					test
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
