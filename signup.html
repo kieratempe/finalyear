@@ -10,11 +10,11 @@
 	<body>
 		<div class="container">
 			<div class="image-section">
-				<div class="welcome">
+				<div class="welcome-text-image">
 					<span>WELCOME TO</span>
 					<h1>HR HARMONY</h1>
 				</div>
-				<h1 class="logotext">HR HARMONY</h1>
+				<h1>HR HARMONY</h1>
 			</div>
 
 			<div class="input-section">
@@ -23,53 +23,57 @@
 					<span>Create an account to access HR HARMONY</span>
 				</div>
 
-				<div>
-					<form class="signup-form" action="register.php" method="post">
-						<div class="name">
-							<div class="inputbox">
-								<input name="first_name" type="text" required="required" />
-								<label class="placeholder">First Name</label>
-							</div>
-
-							<div class="inputbox">
-								<input name="last_name" type="text" required="required" />
-								<label class="placeholder">Last Name</label>
-							</div>
+				<div class="signup-form">
+					<div class="name">
+						<div class="inputbox">
+							<input type="text" required="required" />
+							<label class="placeholder">First Name</label>
 						</div>
 
 						<div class="inputbox">
-							<input name="email" type="text" required="required" />
-							<label class="placeholder">Email</label>
+							<input type="text" required="required" />
+							<label class="placeholder">Last Name</label>
 						</div>
+					</div>
 
-						<div class="phonenumber">
-							<div class="inputbox">
-								<input name="phone_number" type="text" required="required" />
-								<label class="placeholder">Phone Number</label>
-							</div>
-							<span>+60</span>
-						</div>
+					<div class="inputbox">
+						<input type="text" required="required" />
+						<label class="placeholder">Email</label>
+					</div>
 
+					<div class="inputbox-phone">
 						<div class="inputbox">
-							<input name="ic_number" type="text" required="required" />
-							<label class="placeholder">IC Number</label>
+							<input type="text" required="required" />
+							<label class="placeholder">Phone Number</label>
 						</div>
+						<span>+60</span>
+					</div>
 
-						<div class="inputbox">
-							<input name="position" type="text" required="required" />
-							<label class="placeholder">Position</label>
-						</div>
+					<div class="inputbox">
+						<input type="text" required="required" />
+						<label class="placeholder">IC Number</label>
+					</div>
 
-						<div class="inputbox">
-							<input name="password" type="password" required="required" />
-							<label class="placeholder">Password</label>
-						</div>
+					<div class="inputbox">
+						<input type="password" required="required" />
+						<label class="placeholder">Password</label>
+					</div>
 
-						<button>SIGN UP</button>
-					</form>
+					<div class="inputbox">
+						<span>Enter your position: </span>
+						<select required>
+							<option selected disabled hidden value="none"></option>
+							<option>Manager</option>
+							<option>Employee</option>
+							<option>Lecturer</option>
+							<option>Admin</option>
+						</select>
+					</div>
+
+					<button>SIGN UP</button>
 				</div>
 
-				<div class="alreadyaccount">
+				<div class="go-to-sign-in">
 					<span>already have an account? <a href="./login.html">Sign in</a></span>
 				</div>
 			</div>

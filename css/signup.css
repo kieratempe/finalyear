@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css?family=Quicksand");
 
+:root {
+	--p: #2580d0;
+	--phover: #005dae;
+	--accent: #5950ff;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -10,7 +16,7 @@
 }
 
 body {
-	background-color: #dccef0;
+	background-color: hsl(210, 6%, 93%);
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -29,7 +35,7 @@ body {
 	flex: 1;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: space-evenly;
 	gap: 1em;
 	padding: 1em;
 	background-color: #f7f3fa;
@@ -50,8 +56,9 @@ body {
 	gap: 0.5em;
 }
 
-.signup-form input {
-	border: 1px solid grey;
+input,
+select {
+	border: 2px solid #d8d7db;
 	padding: 6px 10px;
 	border-radius: 5px;
 	background-color: #f0eff5;
@@ -62,6 +69,7 @@ body {
 input:focus,
 input:valid {
 	background-color: white;
+	border: 2px solid var(--accent);
 }
 
 input:focus + .placeholder,
@@ -70,7 +78,7 @@ input:valid + .placeholder {
 	transform: translateY(-10px);
 	font-size: 0.5rem;
 	padding: 0 10px;
-	background-color: black;
+	background-color: var(--accent);
 	color: white;
 }
 
@@ -78,6 +86,16 @@ input:valid + .placeholder {
 	flex: 1;
 	display: flex;
 	position: relative;
+	align-items: center;
+}
+
+.inputbox:nth-child(6) {
+	margin: 1em 0 2em 0;
+}
+
+.inputbox span {
+	padding-right: 2em;
+	color: grey;
 }
 
 .inputbox label {
@@ -91,48 +109,43 @@ input:valid + .placeholder {
 }
 
 .signup-form button {
-	background-color: hsl(303, 39%, 74%);
-	margin-top: 1em;
+	background-color: var(--p);
 	padding: 6px 12px;
-	border-radius: 5px;
-	border: 1px solid black;
+	border-radius: 20px;
+	border: none;
+	color: white;
 }
 
 .signup-form button:hover {
-	background-color: hsl(303, 54%, 64%);
+	background-color: #005dae;
 }
 
 .name {
-	flex: 1;
-	display: flex;
 	gap: 10px;
 	display: flex;
+	flex-wrap: wrap;
 }
 
-.name input {
-	flex: 1;
-}
-
-.phonenumber {
+.inputbox-phone {
 	display: flex;
 	align-items: center;
 }
 
-.phonenumber .inputbox {
+.inputbox-phone .inputbox {
 	flex: 1;
 	display: flex;
 	position: relative;
 }
 
-.phonenumber .inputbox label {
+.inputbox-phone .inputbox label {
 	left: 56px;
 }
 
-.phonenumber input {
+.inputbox-phone input {
 	padding-left: 3.5em;
 }
 
-.phonenumber span {
+.inputbox-phone span {
 	margin-left: 10px;
 	position: absolute;
 	color: rgb(0, 0, 0);
@@ -140,22 +153,21 @@ input:valid + .placeholder {
 	padding-right: 10px;
 }
 
-.alreadyaccount {
+.go-to-sign-in {
 	text-align: center;
 }
 
-.alreadyaccount a {
-	color: hsl(271, 58%, 63%);
+.go-to-sign-in a {
+	color: var(--p);
 }
 
-.alreadyaccount a:hover {
-	color: rgb(116, 0, 224);
+.go-to-sign-in a:hover {
+	color: var(--phover);
 }
 
 .image-section {
-	background-image: url(../img/Freebie-GradientTextures-Preview-02.webp);
+	background-image: url(../img/signup.avif);
 	display: flex;
-	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	background-size: cover;
@@ -163,48 +175,45 @@ input:valid + .placeholder {
 	position: relative;
 }
 
-.logotext {
+.image-section > h1 {
 	color: white;
-	margin: 10px 20px;
+	margin: 10px 15px;
 	position: absolute;
 	top: 0;
 	left: 0;
 }
 
-.welcome {
+.welcome-text-image {
 	display: flex;
 	flex-direction: column;
 	color: white;
 	margin: 5em;
 }
 
-.welcome span {
+.welcome-text-image span {
 	font-size: 0.8em;
 }
 
-.welcome h1 {
+.welcome-text-image h1 {
 	font-size: 1.5em;
 }
 
 @media (max-width: 800px) {
-	.logotext {
-		display: none;
-	}
-
 	.container {
 		flex-direction: column;
 	}
 
+	.image-section > h1 {
+		display: none;
+	}
+
+	.welcome-text-image {
+		margin: 35px;
+		align-items: center;
+	}
+
 	.image-section {
 		border-radius: 10px 10px 0 0;
-	}
-
-	.welcome {
-		margin: 35px;
-	}
-
-	.welcome {
-		align-items: center;
 	}
 
 	.input-section {
@@ -213,15 +222,11 @@ input:valid + .placeholder {
 }
 
 @media (max-width: 500px) {
-	body {
-		background-color: none;
-	}
-
 	.signup-form input {
 		padding: 10px 10px;
 	}
 
-	.phonenumber input {
+	.inputbox-phone input {
 		padding-left: 3.5em;
 	}
 
@@ -229,10 +234,6 @@ input:valid + .placeholder {
 		width: 100%;
 		box-shadow: none;
 		flex: 1;
-	}
-
-	.input-section {
-		justify-content: space-evenly;
 	}
 
 	.inputbox label {
@@ -244,16 +245,12 @@ input:valid + .placeholder {
 		transform: translateY(-15px);
 	}
 
-	.input-section .signup-form button {
-		padding: 10px;
-	}
-
 	.image-section {
 		border-radius: 0;
 		height: 20%;
 	}
 
-	.name {
-		flex-direction: column;
+	input {
+		padding: 10px;
 	}
 }
