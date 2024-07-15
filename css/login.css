@@ -139,6 +139,12 @@ button:hover {
 	color: var(--phover);
 }
 
+span {
+	margin: red;
+	background-color: red;
+	color: red;
+}
+
 @media (max-width: 500px) {
 	.container {
 		height: 100%;
