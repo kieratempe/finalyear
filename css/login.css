@@ -139,10 +139,10 @@ button:hover {
 	color: var(--phover);
 }
 
-span {
-	margin: red;
-	background-color: red;
+.error-message {
+	align-self: center;
 	color: red;
+	background-color: rgba(255, 0, 0, 0.15);
 }
 
 @media (max-width: 500px) {
