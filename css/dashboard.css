@@ -167,6 +167,7 @@ body {
 	padding: 10px;
 	border-radius: 10px;
 	border: 2px solid #d870e1;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	background-color: var(--card-bg-color);
 	height: 100%;
 }
@@ -180,33 +181,4 @@ body {
 	margin-top: 10px;
 	width: 100%;
 	max-width: 500px;
-}
-
-.task-form {
-	margin: 20px 0;
-}
-
-.task-form input {
-	padding: 10px;
-	border-radius: 5px;
-	border: 1px solid #ccc;
-	margin-right: 10px;
-}
-
-.task-form button {
-	padding: 10px 20px;
-	background-color: var(--primary-color);
-	color: white;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-}
-
-.task-list ul {
-	list-style-type: none;
-}
-
-.task-list li {
-	padding: 10px;
-	border-bottom: 1px solid #ccc;
 }
