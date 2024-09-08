@@ -3,10 +3,9 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
+		<title>Sign Up - HR Harmony</title>
 		<link rel="stylesheet" href="./css/signup.css" />
 	</head>
-
 	<body>
 		<div class="container">
 			<div class="image-section">
@@ -38,13 +37,17 @@
 						</div>
 
 						<div class="inputbox">
-							<input name="email" type="text" required="required" />
+							<input name="email" type="email" required="required" />
 							<label class="placeholder">Email</label>
 						</div>
 
 						<div class="inputbox-phone">
 							<div class="inputbox">
-								<input name="phone_number" type="text" required="required" />
+								<input
+									name="phone_number"
+									type="text"
+									required="required"
+									pattern="[0-9]{10}" />
 								<label class="placeholder">Phone Number</label>
 							</div>
 							<span>+60</span>
@@ -71,12 +74,12 @@
 							</select>
 						</div>
 
-						<button>SIGN UP</button>
+						<button type="submit">SIGN UP</button>
 					</form>
 				</div>
 
 				<div class="go-to-sign-in">
-					<span>already have an account? <a href="./login.html">Sign in</a></span>
+					<span>Already have an account? <a href="./login.html">Sign in</a></span>
 				</div>
 			</div>
 		</div>

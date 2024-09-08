@@ -1,11 +1,12 @@
 <?php
+// Start session to track user login status
 session_start();
 
-// Database connection details (replace with your credentials)
+// Connect to the database
 $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "hr_harmony";
+$username = "root"; // Default username for XAMPP
+$password = ""; // Leave empty for XAMPP
+$dbname = "hr_harmony"; // The name of your database
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -15,86 +16,39 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$error = '';
+// Get form data
+$email = $_POST['email'];
+$password = $_POST['password'];
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get form data
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+// Check if user exists in the database
+$sql = "SELECT * FROM users WHERE email = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$result = $stmt->get_result();
 
-    // Prepare and execute SQL statement
-    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows == 1) {
-        $row = $result->fetch_assoc();
-        if (password_verify($password, $row['password'])) {
-            // Successful login
-            $_SESSION['user_id'] = $row['id']; // Store user ID in session
-            header("Location: dashboard.php"); // Redirect to dashboard
-            exit;
-        } else {
-            // Incorrect password
-            $error = "Incorrect password";
-        }
+if ($result->num_rows > 0) {
+    // Fetch user data
+    $user = $result->fetch_assoc();
+    
+    // Verify password
+    if (password_verify($password, $user['password'])) {
+        // Set session variables
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['first_name'] = $user['first_name'];
+        $_SESSION['email'] = $user['email'];
+        
+        // Redirect to a dashboard or home page after successful login
+        header("Location: dashboard.php");
     } else {
-        // User not found
-        $error = "User not found";
+        // Wrong password
+        echo "<p class='error-message'>Invalid password. Please try again.</p>";
     }
-
-    $stmt->close();
+} else {
+    // No user found with that email
+    echo "<p class='error-message'>No account found with that email.</p>";
 }
 
+$stmt->close();
 $conn->close();
 ?>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login Page</title>
-    <link rel="stylesheet" href="./css/login.css" />
-</head>
-<body>
-    <div class="container">
-        <div>
-            <form class="login-section" action="login.php" method="post">
-                <div class="logo-area">
-                    <span> HR HARMONY</span>
-                    <img src="./img/logo.svg" />
-                </div>
-
-                <div class="input-area">
-                    <div class="inputbox">
-                        <input name="email" type="text" required="required" />
-                        <label class="placeholder">Email</label>
-                    </div>
-
-                    <div class="inputbox">
-                        <input name="password" type="password" required="required" />
-                        <label class="placeholder">Password</label>
-                    </div>
-                </div>
-
-                <?php if (!empty($error)): ?>
-                <div class="error-message">
-                    <p><?php echo $error; ?></p>
-                </div>
-                <?php endif; ?>
-
-                <div class="login-area">
-                    <button>LOGIN</button>
-                </div>
-
-                <div class="signup-area">
-                    <span>Don't have an account? <a href="./signup.html">Sign up</a></span>
-                </div>
-            </form>
-        </div>
-    </div>
-</body>
-</html>

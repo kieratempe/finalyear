@@ -1,0 +1,223 @@
+@import url("https://fonts.googleapis.com/css?family=Quicksand");
+@import url("/your-path-to-uicons/css/uicons-rounded-bold.css");
+
+:root {
+	--primary-color: #2580d0; /* Updated from --p */
+	--primary-hover-color: #005dae; /* Updated from --phover */
+	--accent-color: #1500ff; /* Updated from --accent */
+	--background-color: #ede4ff; /* Updated from --main */
+	--input-bg: #f0eff5;
+	--input-border: #d8d7db;
+	--border-color: #d2c8d2; /* Remain unchanged */
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Quicksand, sans-serif;
+	font-weight: 700;
+}
+
+body {
+	background-color: var(--background-color); /* Updated */
+	height: 100dvh;
+	display: flex;
+}
+
+.sidebar-links {
+	display: flex;
+	flex-direction: column;
+	background-color: var(--background-color); /* Updated */
+	height: 100%;
+	justify-content: center;
+}
+
+.logo {
+	align-self: center;
+	display: flex;
+	flex-direction: column;
+	margin: 10px auto 20px;
+}
+
+.logo img {
+	width: 7em;
+}
+
+.sidebar-item a {
+	padding: 20px;
+	text-decoration: none;
+	color: black;
+	display: flex;
+	align-items: center;
+	gap: 2em;
+	font-size: 0.9em;
+}
+
+.sidebar-item a:hover {
+	background-color: var(--accent-color); /* Updated */
+	color: white;
+}
+
+.sidebar-item:nth-of-type(2),
+.sidebar-item:nth-of-type(7) {
+	margin-top: auto;
+}
+
+.main {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.header {
+	padding: 10px;
+	display: flex;
+	justify-content: flex-end;
+	background-color: var(--primary-color); /* Updated */
+	gap: 1em;
+	font-size: 0.8em;
+}
+
+.header h1 {
+	margin-right: auto;
+}
+
+.header img {
+	width: 25px;
+}
+
+.searchbar {
+	position: relative;
+	align-content: center;
+}
+
+.searchbar input {
+	padding: 6px 40px;
+	border-radius: 20px;
+	border: none;
+	height: 100%;
+	background-color: var(--input-bg); /* New variable */
+}
+
+.searchbar input:focus {
+	border: 1px solid var(--input-border); /* New variable */
+}
+
+.searchbar img {
+	position: absolute;
+	top: 5px;
+	left: 10px;
+}
+
+.dashboard-content {
+	background-color: #fdedff;
+	flex: 1;
+	padding: 1em;
+	display: flex;
+	flex-direction: column;
+}
+
+.title {
+	margin-bottom: 1em;
+}
+
+.task-screen {
+	display: flex;
+	flex-direction: row;
+	flex: 1;
+	gap: 8px;
+}
+
+.task {
+	flex: 1;
+	padding: 10px;
+	border-radius: 6px;
+	border: 2px solid var(--border-color);
+	background-color: var(--background-color); /* Updated */
+	height: 100%;
+}
+
+.task span,
+.task2 span {
+	font-size: 1.5em;
+}
+
+.task2 {
+	width: 30%;
+	padding: 10px;
+	border-radius: 6px;
+	border: 2px solid var(--border-color);
+	background-color: var(--background-color); /* Updated */
+	height: 100%;
+}
+
+.styled-table {
+	width: 100%;
+	margin-top: 10px;
+	border-collapse: collapse;
+	border: 2px solid #333;
+}
+
+.task-table {
+	width: 100%;
+	border-collapse: collapse;
+	border: 2px solid #333;
+}
+
+tr :nth-child(1) {
+	width: 60%;
+}
+
+td {
+	padding: 10px;
+	text-align: left;
+	border: 1px solid #999;
+}
+
+.tickbox {
+	margin-top: 10px;
+	background-color: rgba(87, 176, 173, 0.319);
+	display: flex;
+	padding: 10px;
+	justify-content: space-around;
+}
+
+/* Add these styles to your existing CSS file */
+.add-project-form {
+	padding: 20px;
+	border-radius: 6px;
+	border: 2px solid var(--border-color);
+	background-color: var(--background-color);
+}
+
+.add-project-form h2 {
+	font-size: 1.5em;
+	margin-bottom: 10px;
+}
+
+.add-project-form label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+.add-project-form input {
+	width: 100%;
+	padding: 8px;
+	margin-bottom: 10px;
+	border-radius: 4px;
+	border: 1px solid var(--input-border);
+}
+
+.add-project-form button {
+	background-color: var(--primary-color);
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.add-project-form button:hover {
+	background-color: var(--primary-hover-color);
+}

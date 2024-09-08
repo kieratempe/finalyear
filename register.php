@@ -1,58 +1,47 @@
 <?php
+// Connect to the database
 $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "hr_harmony";
+$username = "root"; // Default username for XAMPP
+$password = ""; // Leave empty for XAMPP
+$dbname = "hr_harmony"; // The name of your database
 
 // Create connection
-$conn = new mysqli($servername, $username, $password);
+$conn = new mysqli($servername, $username, $password, $dbname);
+
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Select the database
-$conn->select_db($dbname);
+// Get form data
+$first_name = $_POST['first_name'];
+$last_name = $_POST['last_name'];
+$email = $_POST['email'];
+$phone_number = $_POST['phone_number'];
+$ic_number = $_POST['ic_number'];
+$password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the password
+$position = $_POST['position'];
 
-function generateUniqueId($conn) {
-    $prefix = "HR";
-    $stmt = $conn->prepare("SELECT MAX(CAST(SUBSTRING(ID, 3) AS UNSIGNED)) AS max_id FROM users WHERE ID LIKE ?");
-    $like_pattern = $prefix . '%';
-    $stmt->bind_param("s", $like_pattern);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $row = $result->fetch_assoc();
-    $max_id = $row['max_id'] ? $row['max_id'] : 0;
-    $new_id = $prefix . str_pad($max_id + 1, 4, '0', STR_PAD_LEFT);
-    $stmt->close();
-    return $new_id;
+// Basic email validation
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    die("Invalid email format");
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get form data
-    $first_name = $_POST["first_name"];
-    $last_name = $_POST["last_name"];
-    $email = $_POST["email"];
-    $phone_number = $_POST["phone_number"];
-    $ic_number = $_POST["ic_number"];
-    $position = $_POST["position"];
-    $password = $_POST["password"];  // Do not hash password
+// Insert data into the database
+$sql = "INSERT INTO users (first_name, last_name, email, phone_number, ic_number, password, position) 
+        VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-    // Generate a unique ID
-    $id = generateUniqueId($conn);
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("sssssss", $first_name, $last_name, $email, $phone_number, $ic_number, $password, $position);
 
-    // Prepared statement with unique ID
-    $stmt = $conn->prepare("INSERT INTO users (ID, first_name, last_name, email, phone_number, ic_number, position, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssssss", $id, $first_name, $last_name, $email, $phone_number, $ic_number, $position, $password);
-
-    if ($stmt->execute()) {
-        echo "Created successfully";
-    } else {
-        echo "Error: " . $stmt->error;
-    }
-
-    $stmt->close();
+if ($stmt->execute()) {
+    echo "New record created successfully";
+    // Redirect to login page or show a success message
+    header("Location: login.html");
+} else {
+    echo "Error: " . $stmt->error;
 }
 
+$stmt->close();
 $conn->close();
 ?>
