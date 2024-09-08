@@ -8,27 +8,35 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-// Include database connection
-require_once('db_connection.php');
+// Connect to the database
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "hr_harmony";
 
-// Check if form is submitted
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $description = trim($_POST['description']);
-    $status = 'pending'; // Default status
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-    if (!empty($description)) {
-        try {
-            $stmt = $pdo->prepare("INSERT INTO tasks (description, status) VALUES (?, ?)");
-            $stmt->execute([$description, $status]);
-            header("Location: tasks.php"); // Redirect to tasks page
-            exit;
-        } catch (PDOException $e) {
-            echo 'Query failed: ' . $e->getMessage();
-            exit;
-        }
-    }
-} else {
-    header("Location: tasks.php"); // Redirect if not a POST request
-    exit;
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
+
+// Get form data
+$description = $_POST['description'];
+$user_id = $_SESSION['user_id']; // Get the logged-in user's ID
+
+// Insert task into the database
+$sql = "INSERT INTO tasks (description, user_id, status) VALUES (?, ?, 'pending')";
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("si", $description, $user_id);
+
+if ($stmt->execute()) {
+    header("Location: tasks.php");
+    exit;
+} else {
+    echo "Error: " . $stmt->error;
+}
+
+$stmt->close();
+$conn->close();
 ?>

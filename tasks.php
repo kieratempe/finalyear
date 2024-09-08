@@ -8,47 +8,27 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-// Include database connection
-require_once('db_connection.php');
+// Connect to the database
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "hr_harmony";
 
-// Fetch tasks
-try {
-    $stmt = $pdo->query("SELECT * FROM tasks");
-    $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    echo 'Query failed: ' . $e->getMessage();
-    exit;
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 
-// Handle mark as completed
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['complete_task_id'])) {
-    $task_id = (int)$_POST['complete_task_id'];
+// Fetch tasks with user names
+$sql = "SELECT t.id, t.description, t.status, u.first_name, u.last_name 
+        FROM tasks t
+        JOIN users u ON t.user_id = u.user_id";
 
-    try {
-        $stmt = $pdo->prepare("UPDATE tasks SET status = 'completed' WHERE id = ?");
-        $stmt->execute([$task_id]);
-        header("Location: tasks.php"); // Redirect to refresh the page
-        exit;
-    } catch (PDOException $e) {
-        echo 'Query failed: ' . $e->getMessage();
-        exit;
-    }
-}
+$result = $conn->query($sql);
+$tasks = $result->fetch_all(MYSQLI_ASSOC);
 
-// Handle task deletion
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_task_id'])) {
-    $task_id = (int)$_POST['delete_task_id'];
-
-    try {
-        $stmt = $pdo->prepare("DELETE FROM tasks WHERE id = ?");
-        $stmt->execute([$task_id]);
-        header("Location: tasks.php"); // Redirect to refresh the page
-        exit;
-    } catch (PDOException $e) {
-        echo 'Query failed: ' . $e->getMessage();
-        exit;
-    }
-}
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -256,45 +236,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_task_id'])) {
 		</div>
 
         <div class="main">
-        <div class="header">
-            <h1>Tasks</h1>
+    <div class="header">
+        <h1>Tasks</h1>
+    </div>
+
+    <div class="dashboard-content">
+        <div class="task-form">
+            <h2>Add New Task</h2>
+            <form action="add_task.php" method="post">
+                <input type="text" name="description" placeholder="Task Description" required />
+                <button type="submit">Add Task</button>
+            </form>
         </div>
 
-        <div class="dashboard-content">
-            <div class="task-form">
-                <h2>Add New Task</h2>
-                <form action="add_task.php" method="post">
-                    <input type="text" name="description" placeholder="Task Description" required />
-                    <button type="submit">Add Task</button>
-                </form>
-            </div>
-
-            <div class="task-list">
-                <h2>Task List</h2>
-                <ul>
-    <?php foreach ($tasks as $task): ?>
-        <li>
-            <span class="task-description"><?php echo htmlspecialchars($task['description']); ?></span>
-            <div class="task-actions">
-                <span class="status <?php echo htmlspecialchars($task['status']); ?>">
-                    <?php echo htmlspecialchars($task['status']); ?>
-                </span>
-                <?php if ($task['status'] == 'pending'): ?>
-                    <form action="tasks.php" method="post" style="display:inline;">
-                        <input type="hidden" name="complete_task_id" value="<?php echo $task['id']; ?>" />
-                        <button type="submit">Mark as Completed</button>
-                    </form>
-                <?php endif; ?>
-                <form action="tasks.php" method="post" style="display:inline;">
-                    <input type="hidden" name="delete_task_id" value="<?php echo $task['id']; ?>" />
-                    <button type="submit" class="delete-button">Delete</button>
-                </form>
-            </div>
-        </li>
-    <?php endforeach; ?>
-</ul>
-            </div>
+        <div class="task-list">
+            <h2>Task List</h2>
+            <ul>
+                <?php foreach ($tasks as $task): ?>
+                    <li>
+                        <?php echo htmlspecialchars($task['description']); ?>
+                        <span><?php echo htmlspecialchars($task['status']); ?></span>
+                        <span>Added by: <?php echo htmlspecialchars($task['first_name']) . ' ' . htmlspecialchars($task['last_name']); ?></span>
+                        <?php if ($task['status'] == 'pending'): ?>
+                            <form action="tasks.php" method="post" style="display:inline;">
+                                <input type="hidden" name="complete_task_id" value="<?php echo $task['id']; ?>" />
+                                <button type="submit">Mark as Completed</button>
+                            </form>
+                        <?php endif; ?>
+                        <form action="delete_task.php" method="post" style="display:inline;">
+                            <input type="hidden" name="delete_task_id" value="<?php echo $task['id']; ?>" />
+                            <button class="delete-button" type="submit">Delete</button>
+                        </form>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
         </div>
     </div>
+</div>
 </body>
 </html>

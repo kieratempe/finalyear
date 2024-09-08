@@ -35,9 +35,17 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("sssssss", $first_name, $last_name, $email, $phone_number, $ic_number, $password, $position);
 
 if ($stmt->execute()) {
-    echo "New record created successfully";
-    // Redirect to login page or show a success message
-    header("Location: login.html");
+    // Get the auto-generated user_id
+    $user_id = $conn->insert_id;
+
+    // Start the session and store user_id
+    session_start();
+    $_SESSION['user_id'] = $user_id;
+    $_SESSION['first_name'] = $first_name;
+
+    // Redirect to login page or dashboard
+    header("Location: dashboard.php");
+    exit;
 } else {
     echo "Error: " . $stmt->error;
 }
