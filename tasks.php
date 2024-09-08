@@ -8,27 +8,51 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-// Connect to the database
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "hr_harmony";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// Include database connection
+require_once('db_connection.php');
 
 // Fetch tasks with user names
-$sql = "SELECT t.id, t.description, t.status, u.first_name, u.last_name 
+try {
+    $stmt = $pdo->query("
+        SELECT t.id, t.description, t.status, CONCAT(u.first_name, ' ', u.last_name) AS user_name
         FROM tasks t
-        JOIN users u ON t.user_id = u.user_id";
+        JOIN users u ON t.user_id = u.user_id
+    ");
+    $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    echo 'Query failed: ' . $e->getMessage();
+    exit;
+}
 
-$result = $conn->query($sql);
-$tasks = $result->fetch_all(MYSQLI_ASSOC);
+// Handle mark as completed
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['complete_task_id'])) {
+    $task_id = (int)$_POST['complete_task_id'];
 
-$conn->close();
+    try {
+        $stmt = $pdo->prepare("UPDATE tasks SET status = 'completed' WHERE id = ?");
+        $stmt->execute([$task_id]);
+        header("Location: tasks.php"); // Redirect to refresh the page
+        exit;
+    } catch (PDOException $e) {
+        echo 'Query failed: ' . $e->getMessage();
+        exit;
+    }
+}
+
+// Handle task deletion
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_task_id'])) {
+    $task_id = (int)$_POST['delete_task_id'];
+
+    try {
+        $stmt = $pdo->prepare("DELETE FROM tasks WHERE id = ?");
+        $stmt->execute([$task_id]);
+        header("Location: tasks.php"); // Redirect to refresh the page
+        exit;
+    } catch (PDOException $e) {
+        echo 'Query failed: ' . $e->getMessage();
+        exit;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -39,8 +63,6 @@ $conn->close();
     <title>Tasks - HR HARMONY</title>
     <link rel="stylesheet" href="css/dashboard.css" />
     <style>
-
-
         /* Task Management Specific Styles */
         .task-form {
             background-color: var(--card-bg-color);
@@ -58,7 +80,7 @@ $conn->close();
             margin-bottom: 20px;
         }
 
-        .task-form form{
+        .task-form form {
             display: flex;
             flex-direction: column;
             gap: 10px;
@@ -88,37 +110,14 @@ $conn->close();
         }
 
         .task-list {
-    background-color: var(--card-bg-color);
-    border: 2px solid var(--border-color);
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-height: 470px; /* Set the maximum height */
-    overflow-y: auto; /* Enable vertical scrolling */
-    scrollbar-width: thin; /* For Firefox */
-    scrollbar-color: #888 #f1f1f1; /* For Firefox */
-}
-
-/* WebKit Scrollbar Styling */
-.task-list::-webkit-scrollbar {
-    width: 10px;
-}
-
-.task-list::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-}
-
-.task-list::-webkit-scrollbar-thumb {
-    background-color: #888;
-    border-radius: 10px;
-    border: 2px solid #f1f1f1;
-}
-
-.task-list::-webkit-scrollbar-thumb:hover {
-    background-color: #555;
-}
-
+            background-color: var(--card-bg-color);
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-height: 500px; /* Adjust as needed */
+            overflow-y: auto; /* Add scrollbar if needed */
+        }
 
         .task-list h2 {
             margin-bottom: 15px;
@@ -127,30 +126,29 @@ $conn->close();
 
         .task-list ul {
             list-style-type: none;
+            padding: 0;
+            margin: 0;
         }
 
         .task-list li {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #ddd;
-}
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ddd;
+            position: relative;
+        }
 
-/* Flex container for task actions (status and buttons) */
-.task-actions {
-    display: flex;
-    gap: 10px; /* Add space between status and buttons */
-}
+        .task-list .task-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
 
-/* Task description aligned left */
-.task-list .task-description {
-    flex-grow: 1; /* Takes up remaining space on the left */
-}
-
-/* Task status and buttons aligned right */
-
+        .task-list .task-content span {
+            margin-right: 10px;
+        }
 
         .task-list .status {
             padding: 5px 10px;
@@ -169,109 +167,128 @@ $conn->close();
         }
 
         .task-list button {
-    background-color: #28a745; /* Green color for completed button */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-}
+            background-color: #28a745; /* Green color for completed button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
 
-.task-list button:hover {
-    background-color: #218838; /* Darker green on hover */
-}
+        .task-list button:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
 
-.delete-button {
+        .delete-button {
             background-color: #dc3545; /* Red color for delete button */
             color: white;
             border: none;
             border-radius: 5px;
             padding: 5px 10px;
             cursor: pointer;
+            font-size: 0.9em;
+            margin-left: 10px;
         }
 
         .delete-button:hover {
-            background-color: #c82333; /* Darker red on hover */}
+            background-color: #c82333; /* Darker red on hover */
+        }
 
+        .task-list .user-name {
+            font-style: italic;
+            color: #555;
+            margin-left: 10px;
+        }
 
+        .task-actions{
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
-<div class="sidebar">
-			<div class="sidebar-links">
-				<div class="logo">
-					<img src="img/companylogo.svg" />
-					<span>HR HARMONY</span>
-				</div>
+    <div class="sidebar">
+        <div class="sidebar-links">
+            <div class="logo">
+                <img src="img/companylogo.svg" />
+                <span>HR HARMONY</span>
+            </div>
 
-				<div class="sidebar-item">
-					<a href="dashboard.php"> <img src="img/icons/dashboard.svg" />Dashboard</a>
-				</div>
+            <div class="sidebar-item">
+                <a href="dashboard.php"> <img src="img/icons/dashboard.svg" />Dashboard</a>
+            </div>
 
-				<div class="sidebar-item">
-    <a href="tasks.php"><img src="img/icons/tasks.svg" /> Task</a>
-</div>
+            <div class="sidebar-item">
+                <a href="tasks.php"><img src="img/icons/tasks.svg" /> Task</a>
+            </div>
 
+            <div class="sidebar-item">
+                <a href="#"><img src="img/icons/appraisal.svg" /> Appraisal</a>
+            </div>
 
-				<div class="sidebar-item">
-					<a href="#"><img src="img/icons/appraisal.svg" /> Appraisal</a>
-				</div>
+            <div class="sidebar-item">
+                <a href="#"> <img src="img/icons/payment.svg" />Payslip</a>
+            </div>
 
-				<div class="sidebar-item">
-					<a href="#"> <img src="img/icons/payment.svg" />Payslip</a>
-				</div>
+            <div class="sidebar-item">
+                <a href="#"> <img src="img/icons/training.svg" />Training</a>
+            </div>
 
-				<div class="sidebar-item">
-					<a href="#"> <img src="img/icons/training.svg" />Training</a>
-				</div>
+            <div class="sidebar-item">
+                <a href="#"><img src="img/icons/account.svg" /> Account</a>
+            </div>
 
-				<div class="sidebar-item">
-					<a href="#"><img src="img/icons/account.svg" /> Account</a>
-				</div>
-
-				<div class="sidebar-item">
-					<a href="logout.php"> <img src="img/icons/exit.svg" />Logout</a>
-				</div>
-			</div>
-		</div>
-
-        <div class="main">
-    <div class="header">
-        <h1>Tasks</h1>
-    </div>
-
-    <div class="dashboard-content">
-        <div class="task-form">
-            <h2>Add New Task</h2>
-            <form action="add_task.php" method="post">
-                <input type="text" name="description" placeholder="Task Description" required />
-                <button type="submit">Add Task</button>
-            </form>
-        </div>
-
-        <div class="task-list">
-            <h2>Task List</h2>
-            <ul>
-                <?php foreach ($tasks as $task): ?>
-                    <li>
-                        <?php echo htmlspecialchars($task['description']); ?>
-                        <span><?php echo htmlspecialchars($task['status']); ?></span>
-                        <span>Added by: <?php echo htmlspecialchars($task['first_name']) . ' ' . htmlspecialchars($task['last_name']); ?></span>
-                        <?php if ($task['status'] == 'pending'): ?>
-                            <form action="tasks.php" method="post" style="display:inline;">
-                                <input type="hidden" name="complete_task_id" value="<?php echo $task['id']; ?>" />
-                                <button type="submit">Mark as Completed</button>
-                            </form>
-                        <?php endif; ?>
-                        <form action="delete_task.php" method="post" style="display:inline;">
-                            <input type="hidden" name="delete_task_id" value="<?php echo $task['id']; ?>" />
-                            <button class="delete-button" type="submit">Delete</button>
-                        </form>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
+            <div class="sidebar-item">
+                <a href="logout.php"> <img src="img/icons/exit.svg" />Logout</a>
+            </div>
         </div>
     </div>
-</div>
+
+    <div class="main">
+        <div class="header">
+            <h1>Tasks</h1>
+        </div>
+
+        <div class="dashboard-content">
+            <div class="task-form">
+                <h2>Add New Task</h2>
+                <form action="add_task.php" method="post">
+                    <input type="text" name="description" placeholder="Task Description" required />
+                    <button type="submit">Add Task</button>
+                </form>
+            </div>
+
+            <div class="task-list">
+                <h2>Task List</h2>
+                <ul>
+                    <?php foreach ($tasks as $task): ?>
+                        <li>
+                            <div class="task-content">
+                                <span><?php echo htmlspecialchars($task['description']); ?></span>
+                            </div>
+                            <div class="task-actions">
+                                <span class="user-name">Added by: <?php echo htmlspecialchars($task['user_name']); ?></span>
+                                <span class="status <?php echo htmlspecialchars($task['status']); ?>">
+                                    <?php echo htmlspecialchars($task['status']); ?>
+                                </span>
+                                <?php if ($task['status'] == 'pending'): ?>
+                                    <form action="tasks.php" method="post" style="display:inline;">
+                                        <input type="hidden" name="complete_task_id" value="<?php echo $task['id']; ?>" />
+                                        <button type="submit">Mark as Completed</button>
+                                    </form>
+                                <?php endif; ?>
+                                <form action="tasks.php" method="post" style="display:inline;">
+                                    <input type="hidden" name="delete_task_id" value="<?php echo $task['id']; ?>" />
+                                    <button class="delete-button" type="submit">Delete</button>
+                                </form>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
