@@ -108,12 +108,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_task_id'])) {
         }
 
         .task-list {
-            background-color: var(--card-bg-color);
-            border: 2px solid var(--border-color);
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+    background-color: var(--card-bg-color);
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-height: 470px; /* Set the maximum height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #888 #f1f1f1; /* For Firefox */
+}
+
+/* WebKit Scrollbar Styling */
+.task-list::-webkit-scrollbar {
+    width: 10px;
+}
+
+.task-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.task-list::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+    border: 2px solid #f1f1f1;
+}
+
+.task-list::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
 
         .task-list h2 {
             margin-bottom: 15px;
