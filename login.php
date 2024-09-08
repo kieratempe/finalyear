@@ -1,7 +1,4 @@
 <?php
-// Start session to track user login status
-session_start();
-
 // Connect to the database
 $servername = "localhost";
 $username = "root"; // Default username for XAMPP
@@ -20,33 +17,39 @@ if ($conn->connect_error) {
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-// Check if user exists in the database
-$sql = "SELECT * FROM users WHERE email = ?";
+// Basic email validation
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    die("Invalid email format");
+}
+
+// Prepare SQL statement
+$sql = "SELECT user_id, first_name, password FROM users WHERE email = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $email);
-$stmt->execute();
-$result = $stmt->get_result();
 
-if ($result->num_rows > 0) {
-    // Fetch user data
-    $user = $result->fetch_assoc();
-    
+$stmt->execute();
+$stmt->store_result();
+
+// Check if user exists
+if ($stmt->num_rows > 0) {
+    $stmt->bind_result($user_id, $first_name, $hashed_password);
+    $stmt->fetch();
+
     // Verify password
-    if (password_verify($password, $user['password'])) {
-        // Set session variables
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['first_name'] = $user['first_name'];
-        $_SESSION['email'] = $user['email'];
-        
-        // Redirect to a dashboard or home page after successful login
+    if (password_verify($password, $hashed_password)) {
+        // Start the session and store user data
+        session_start();
+        $_SESSION['user_id'] = $user_id;
+        $_SESSION['first_name'] = $first_name;
+
+        // Redirect to dashboard
         header("Location: dashboard.php");
+        exit;
     } else {
-        // Wrong password
-        echo "<p class='error-message'>Invalid password. Please try again.</p>";
+        echo "Invalid password";
     }
 } else {
-    // No user found with that email
-    echo "<p class='error-message'>No account found with that email.</p>";
+    echo "No user found with this email";
 }
 
 $stmt->close();
