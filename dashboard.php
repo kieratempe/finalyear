@@ -1,3 +1,18 @@
+<?php
+// Start session
+session_start();
+
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    // Redirect to login page if user is not logged in
+    header("Location: login.html");
+    exit;
+}
+
+// Get user information from the session
+$user_first_name = $_SESSION['first_name'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -39,7 +54,7 @@
 				</div>
 
 				<div class="sidebar-item">
-					<a href="#"> <img src="img/icons/exit.svg" />Logout</a>
+					<a href="logout.php"> <img src="img/icons/exit.svg" />Logout</a>
 				</div>
 			</div>
 		</div>
@@ -56,12 +71,9 @@
 			</div>
 
 			<div class="dashboard-content">
-				<div class="title">
-					<h1>
-						Welcome,
-						<?php echo htmlspecialchars($user_first_name); ?>!
-					</h1>
-				</div>
+			<div class="title">
+        <h1>Welcome, <?php echo htmlspecialchars($user_first_name); ?>!</h1>
+    </div>
 
 				<div class="card-section">
 					<!-- Total Employees Card -->
@@ -69,7 +81,7 @@
 						<span>Total Employees</span>
 						<h2>120</h2>
 						<!-- Replace with dynamic data -->
-						<img src="img/icons/employees.svg" alt="Employees Icon" />
+						<img src="img/icons/.svg" alt="Employees Icon" />
 					</div>
 
 					<!-- Pending Tasks Card -->
