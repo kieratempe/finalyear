@@ -59,14 +59,13 @@ $conn->close();
 	border-radius: 10px;
 	border: 2px solid #d870e1;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	background-color: var(--card-bg-color);
-        }
+	background-color: var(--card-bg-color);      
+  }
 
         .profile-container h1, .profile-container h2 {
     color: var(--primary-text-color);
     font-size: 2em;
     text-align: center;
-    margin-bottom: 20px;
 }
 
 
@@ -93,10 +92,20 @@ $conn->close();
     text-align: left;
 }
 
+.profile-container input {
+            width: 100%;
+            padding: 5px;
+            border: none;
+            background-color: transparent;
+            font-size: 1em;
+        }
+
 .profile-container form {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    flex: 1;
+    justify-content: space-around;
 }
 
 
@@ -106,6 +115,7 @@ $conn->close();
     border: 1px solid #ccc;
     background-color: #f9f9f9;
     transition: all 0.3s ease;
+    font-size: 1.1em;
 }
 
 .profile-container input:focus {
@@ -206,42 +216,66 @@ $conn->close();
 
 
 
-                <div class="profile-container">
+            <div class="profile-container">
 
-        <table>
-            <tr>
-                <th>First Name</th>
-                <td><?php echo htmlspecialchars($user['first_name']); ?></td>
-            </tr>
-            <tr>
-                <th>Last Name</th>
-                <td><?php echo htmlspecialchars($user['last_name']); ?></td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td><?php echo htmlspecialchars($user['email']); ?></td>
-            </tr>
-            <tr>
-                <th>Phone Number (60+)</th>
-                <td><?php echo htmlspecialchars($user['phone_number']); ?></td>
-            </tr>
-            <tr>
-                <th>Position</th>
-                <td><?php echo htmlspecialchars($user['position']); ?></td>
-            </tr>
-        </table>
-
-
-        <h2>Update Your Profile</h2>
-        <form class="update_profile" action="update_profile.php" method="POST">
-            <input type="text" name="first_name" value="<?php echo htmlspecialchars($user['first_name']); ?>" required>
-            <input type="text" name="last_name" value="<?php echo htmlspecialchars($user['last_name']); ?>" required>
-            <input type="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" required>
-            <input type="text" name="phone_number" value="<?php echo htmlspecialchars($user['phone_number']); ?>" required>
-            <button type="submit">Update Profile</button>
+        <form id="profileForm" action="update_profile.php" method="POST">
+        <h1>Profile</h1>
+            <table>
+                <tr>
+                    <th>First Name</th>
+                    <td>
+                        <input type="text" name="first_name" value="<?php echo htmlspecialchars($user['first_name']); ?>" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Last Name</th>
+                    <td>
+                        <input type="text" name="last_name" value="<?php echo htmlspecialchars($user['last_name']); ?>" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>
+                        <input type="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Phone Number</th>
+                    <td>
+                        <input type="text" name="phone_number" value="<?php echo htmlspecialchars($user['phone_number']); ?>" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>Position</th>
+                    <td>
+                        <input type="text" name="position" value="<?php echo htmlspecialchars($user['position']); ?>" />
+                    </td>
+                </tr>
+            </table>
+            <button class="save-btn" type="submit">Save Changes</button>
         </form>
-
     </div>
+
+    <script>
+        // Optional: You can use AJAX to handle the form submission without reloading
+        document.getElementById("profileForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+
+            fetch('update_profile.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert('Profile updated successfully');
+                console.log(data);
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+
+    
 
 </body>
 </html>
