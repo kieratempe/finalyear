@@ -48,23 +48,20 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile - HR HARMONY</title>
     <!-- Include your CSS file -->
-    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/dashboard.css">
     <style>
         /* Profile Styles */
         .profile-container {
-            width: 60%;
-            margin: 40px auto;
-            background-color: #f4f4f4;
-            padding: 20px 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+	border-radius: 10px;
+	border: 2px solid #d870e1;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	background-color: var(--card-bg-color);
         }
 
-        .profile-container h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 30px;
-        }
 
         .profile-container table {
             width: 100%;
@@ -84,12 +81,14 @@ $conn->close();
 
         .profile-container form {
             display: flex;
+            flex: 1;
             flex-direction: column;
+            gap: 10px;
+            justify-content: space-evenly;
         }
 
         .profile-container input {
             padding: 10px;
-            margin: 5px 0 15px 0;
             border-radius: 5px;
             border: 1px solid #ddd;
             font-size: 1em;
@@ -110,11 +109,81 @@ $conn->close();
         .profile-container button:hover {
             background-color: #0056b3;
         }
+
+
     </style>
-</head>
-<body>
-    <div class="profile-container">
-        <h1>Your Profile</h1>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Dashboard - HR HARMONY</title>
+		<link rel="stylesheet" href="css/dashboard.css" />
+	</head>
+	<body>
+		<div class="sidebar">
+			<div class="sidebar-links">
+				<div class="logo">
+					<img src="img/companylogo.svg" />
+					<span>HR HARMONY</span>
+				</div>
+
+				<div class="sidebar-item">
+					<a href="dashboard.php"> <img src="img/icons/dashboard.svg" />Dashboard</a>
+				</div>
+
+				<div class="sidebar-item">
+    <a href="tasks.php"><img src="img/icons/tasks.svg" /> Task</a>
+</div>
+
+
+				<div class="sidebar-item">
+					<a href="#"><img src="img/icons/appraisal.svg" /> Appraisal</a>
+				</div>
+
+				<div class="sidebar-item">
+					<a href="#"> <img src="img/icons/payment.svg" />Payslip</a>
+				</div>
+
+				<div class="sidebar-item">
+					<a href="#"> <img src="img/icons/training.svg" />Training</a>
+				</div>
+
+                <div class="sidebar-item">
+    <a href="profile.php"> <img src="img/icons/account.svg" />Profile</a>
+</div>
+
+
+				<div class="sidebar-item">
+					<a href="logout.php"> <img src="img/icons/exit.svg" />Logout</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="main">
+        <div class="header">
+            <h1>HR HARMONY</h1>
+            <div class="searchbar">
+                <input type="search" placeholder="Search..." />
+                <img src="img/icons/search.svg" alt="Search Icon" />
+            </div>
+            <img src="img/icons/notification.svg" alt="Notification Icon" />
+            <img src="img/icons/account.svg" alt="Account Icon" />
+        </div>
+
+        <div class="dashboard-content">
+            <div class="title">
+                <h1> Profile </h1>
+            </div>
+
+
+
+
+
+                <div class="profile-container">
 
         <table>
             <tr>
@@ -139,14 +208,17 @@ $conn->close();
             </tr>
         </table>
 
+
         <h2>Update Your Profile</h2>
-        <form action="update_profile.php" method="POST">
+        <form class="update_profile" action="update_profile.php" method="POST">
             <input type="text" name="first_name" value="<?php echo htmlspecialchars($user['first_name']); ?>" required>
             <input type="text" name="last_name" value="<?php echo htmlspecialchars($user['last_name']); ?>" required>
             <input type="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" required>
             <input type="text" name="phone_number" value="<?php echo htmlspecialchars($user['phone_number']); ?>" required>
             <button type="submit">Update Profile</button>
         </form>
+
     </div>
+
 </body>
 </html>
