@@ -74,9 +74,10 @@ try {
 					<a href="#"> <img src="img/icons/training.svg" />Training</a>
 				</div>
 
-				<div class="sidebar-item">
-					<a href="#"><img src="img/icons/account.svg" /> Account</a>
-				</div>
+                <div class="sidebar-item">
+    <a href="profile.php"> <img src="img/icons/account.svg" />Profile</a>
+</div>
+
 
 				<div class="sidebar-item">
 					<a href="logout.php"> <img src="img/icons/exit.svg" />Logout</a>
