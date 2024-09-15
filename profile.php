@@ -62,53 +62,76 @@ $conn->close();
 	background-color: var(--card-bg-color);
         }
 
+        .profile-container h1, .profile-container h2 {
+    color: var(--primary-text-color);
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 20px;
+}
 
-        .profile-container table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
 
-        .profile-container table th, .profile-container table td {
-            padding: 10px;
-            text-align: left;
-        }
+.profile-container table {
+    margin-bottom: 20px;
+    border-collapse: collapse;
 
-        .profile-container table th {
-            width: 30%;
-            background-color: #eaeaea;
-        }
+}
 
-        .profile-container form {
-            display: flex;
-            flex: 1;
-            flex-direction: column;
-            gap: 10px;
-            justify-content: space-evenly;
-        }
 
-        .profile-container input {
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            font-size: 1em;
-        }
 
-        .profile-container button {
-            width: 50%;
-            align-self: center;
-            background-color: #007bff;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-        }
 
-        .profile-container button:hover {
-            background-color: #0056b3;
-        }
+.profile-container table th, .profile-container table td {
+    padding: 15px;
+    border: 1px solid #ddd;
+}
+
+.profile-container table th {
+    background-color: #eaeaea;
+    color: var(--primary-text-color);
+    font-weight: 600;
+    width: 15%;
+    padding: 12px;
+    text-align: left;
+}
+
+.profile-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+.profile-container input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+}
+
+.profile-container input:focus {
+    border-color: var(--primary-color); /* Match this with the dashboard's theme */
+    outline: none;
+    background-color: #fff;
+}
+
+
+.profile-container button {
+    width: 50%;
+    align-self: center;
+    background-color: #007bff; /* You can adjust this to match your dashboard’s main color */
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color .3s ease;
+}
+
+.profile-container button:hover {
+    background-color: #0056b3; /* Match this with your accent color */
+    transform: scale(1.02);
+}
 
 
     </style>
@@ -199,7 +222,7 @@ $conn->close();
                 <td><?php echo htmlspecialchars($user['email']); ?></td>
             </tr>
             <tr>
-                <th>Phone Number</th>
+                <th>Phone Number (60+)</th>
                 <td><?php echo htmlspecialchars($user['phone_number']); ?></td>
             </tr>
             <tr>
