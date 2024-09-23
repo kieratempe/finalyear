@@ -4,11 +4,12 @@
 :root {
 	--primary-color: #2580d0;
 	--main-bg-color: #f1e2ff;
-	--border-color: #d870e1;
+	--border-color: #272263;
 	--primary-hover-color: #005dae;
 	--accent-color: #5950ff;
 	--content-bg-color: #f5f5ff;
 	--card-bg-color: #ffffff;
+	--card-border-color: #6a7799;
 }
 
 * {
@@ -24,47 +25,79 @@ body {
 	display: flex;
 }
 
+/* Sidebar Scroll Fix */
+.sidebar {
+	display: flex;
+	flex-direction: column;
+	height: 100dvh; /* Fix sidebar height to 100% of the viewport */
+	background: linear-gradient(
+		to bottom,
+		#f0f1f5,
+		#dee0e7,
+		#9cb2ef
+	); /* Same gradient */
+}
+
+/* Apply Scrollbar to sidebar-links */
 .sidebar-links {
 	display: flex;
 	flex-direction: column;
-	background-color: var(--main-bg-color);
-	height: 100%;
-	justify-content: center;
+	flex-grow: 1; /* Ensures the sidebar-links takes up all available height */
+	overflow-y: auto; /* Enable scrolling for sidebar-links if content exceeds height */
 }
 
-.logo img {
-	width: 7em;
+/* Add a scrollbar style for webkit browsers */
+.sidebar-links::-webkit-scrollbar {
+	width: 4px;
 }
 
-.logo span {
-	font-size: 1.2em;
+.sidebar-links::-webkit-scrollbar-thumb {
+	background-color: var(--primary-color);
+	border-radius: 10px;
 }
 
-.logo {
-	align-self: center;
-	align-items: center;
-	display: flex;
-	flex-direction: column;
+.sidebar-item img {
+	width: 1.5em;
 }
 
 .sidebar-item a {
 	padding: 20px;
 	text-decoration: none;
-	color: black;
+	color: #333;
 	display: flex;
 	align-items: center;
 	gap: 2em;
 	font-size: 0.9em;
-}
-
-.sidebar-item a:hover {
-	background-color: var(--accent-color);
-	color: white;
+	transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .sidebar-item:nth-of-type(2),
-.sidebar-item:nth-of-type(7) {
+.sidebar-item:nth-of-type(9) {
 	margin-top: auto;
+}
+
+.sidebar-item a:hover {
+	background-color: var(--primary-color);
+	color: white;
+}
+
+.sidebar-item a:focus {
+	outline: 2px solid var(--accent-color);
+	background-color: var(--primary-hover-color);
+	color: white;
+}
+
+/* Adjust the logo container */
+.logo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 10px;
+}
+
+.logo img {
+	width: 6em;
 }
 
 .main {
@@ -77,14 +110,20 @@ body {
 	padding: 10px;
 	display: flex;
 	justify-content: flex-end;
-	background-color: var(--primary-color);
+	background: linear-gradient(
+		to right,
+		#f0f1f5,
+		#dee0e7,
+		#9cb2ef
+	); /* Soft grey to blue gradient */
 	gap: 1em;
 	font-size: 0.8em;
 }
 
 .header h1 {
 	margin-right: auto;
-	color: white;
+	color: #424242; /* Darker color for better contrast */
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .header img {
@@ -127,24 +166,25 @@ body {
 
 .card-section {
 	display: flex;
-	gap: 10px;
+	gap: 20px; /* Increased gap for breathing room */
 	margin: 20px 0;
 	justify-content: space-around;
 }
 
 .card {
 	background-color: var(--card-bg-color);
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 	border-radius: 10px;
 	padding: 20px;
 	flex: 1;
 	text-align: center;
-	transition: transform 0.3s ease;
-	border: 2px solid var(--border-color);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	border: 2px solid var(--card-border-color);
 }
 
 .card:hover {
-	transform: scale(1.05);
+	transform: translateY(-5px) scale(1.02); /* Subtle hover scaling */
+	box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Increased shadow on hover */
 }
 
 .card span {
@@ -158,15 +198,27 @@ body {
 	color: var(--primary-color);
 }
 
+/* Different header colors for different cards */
+.card:nth-child(1) h2 {
+	color: #2580d0;
+}
+
+.card:nth-child(2) h2 {
+	color: #ff5722;
+}
+
+.card:nth-child(3) h2 {
+	color: #4caf50;
+}
+
 .card img {
 	width: 2.5em;
-	margin-top: 10px;
 }
 
 .monthly-overview {
 	padding: 10px;
 	border-radius: 10px;
-	border: 2px solid #d870e1;
+	border: 2px solid var(--card-border-color);
 	background-color: var(--card-bg-color);
 	height: 100%;
 }
@@ -180,4 +232,25 @@ body {
 	margin-top: 10px;
 	width: 100%;
 	max-width: 500px;
+}
+
+/* Media query for responsive design */
+@media (max-width: 768px) {
+	.card-section {
+		flex-direction: column; /* Stack cards vertically */
+		gap: 20px;
+	}
+
+	.header {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.sidebar-item a {
+		font-size: 1.1em;
+	}
+
+	.searchbar input {
+		width: 100%;
+	}
 }
