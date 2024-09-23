@@ -17,7 +17,7 @@ require_once('db_connection.php');
 // Fetch dynamic data
 try {
     // Fetch total number of employees
-    $stmt = $pdo->query("SELECT COUNT(*) FROM employees");
+    $stmt = $pdo->query("SELECT COUNT(*) FROM users");
     $total_employees = $stmt->fetchColumn();
 
     // Fetch pending tasks count
@@ -74,10 +74,9 @@ try {
 					<a href="#"> <img src="img/icons/training.svg" />Training</a>
 				</div>
 
-                <div class="sidebar-item">
-    <a href="profile.php"> <img src="img/icons/account.svg" />Profile</a>
-</div>
-
+				<div class="sidebar-item">
+					<a href="account.php"><img src="img/icons/account.svg" /> Account</a>
+				</div>
 
 				<div class="sidebar-item">
 					<a href="logout.php"> <img src="img/icons/exit.svg" />Logout</a>
@@ -93,7 +92,7 @@ try {
                 <img src="img/icons/search.svg" alt="Search Icon" />
             </div>
             <img src="img/icons/notification.svg" alt="Notification Icon" />
-            <img src="img/icons/account.svg" alt="Account Icon" />
+            
         </div>
 
         <div class="dashboard-content">
@@ -104,9 +103,11 @@ try {
             <div class="card-section">
                 <!-- Total Employees Card -->
                 <div class="card">
+					<a href="EmployeeList.php">
                     <span>Total Employees</span>
                     <h2><?php echo htmlspecialchars($total_employees); ?></h2>
                     <img src="img/icons/employees.svg" alt="Employees Icon" />
+					</a>
                 </div>
 
                 <!-- Pending Tasks Card -->

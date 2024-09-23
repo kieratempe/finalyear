@@ -2,64 +2,56 @@
 @import url("/your-path-to-uicons/css/uicons-rounded-bold.css");
 
 :root {
-	--primary-color: #2580d0;
-	--main-bg-color: #f1e2ff;
-	--border-color: #272263;
-	--primary-hover-color: #005dae;
-	--accent-color: #5950ff;
-	--content-bg-color: #f5f5ff;
-	--card-bg-color: #ffffff;
-	--card-border-color: #6a7799;
+    --primary-color: #38b000; 
+    --main-bg-color: #e0ffdd; 
+    --border-color: #2e7d32; 
+    --primary-hover-color: #1b5e20; 
+    --accent-color: #2ecc71; 
+    --content-bg-color: #f0fff0; 
+    --card-bg-color: #ffffff; 
 }
 
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: Quicksand, sans-serif;
-	font-weight: 700;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Quicksand, sans-serif;
+    font-weight: 700;
 }
 
 body {
-	height: 100vh;
-	display: flex;
+    height: 100vh;
+    display: flex;
+    background: linear-gradient(to right, #d4fc79, #96e6a1); /* Green gradient background */
 }
 
-/* Sidebar Scroll Fix */
-.sidebar {
-	display: flex;
-	flex-direction: column;
-	height: 100dvh; /* Fix sidebar height to 100% of the viewport */
-	background: linear-gradient(
-		to bottom,
-		#f0f1f5,
-		#dee0e7,
-		#9cb2ef
-	); /* Same gradient */
-}
-
-/* Apply Scrollbar to sidebar-links */
 .sidebar-links {
-	display: flex;
-	flex-direction: column;
-	flex-grow: 1; /* Ensures the sidebar-links takes up all available height */
-	overflow-y: auto; /* Enable scrolling for sidebar-links if content exceeds height */
+    display: flex;
+    flex-direction: column;
+    background-color: var(--main-bg-color);
+    height: 100%;
+    justify-content: center;
 }
 
-/* Add a scrollbar style for webkit browsers */
-.sidebar-links::-webkit-scrollbar {
-	width: 4px;
+.logo img {
+    width: 7em;
 }
+
 
 .sidebar-links::-webkit-scrollbar-thumb {
 	background-color: var(--primary-color);
+
 }
 
-.sidebar-item img {
-	width: 1.5em;
+.logo {
+    align-self: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar-item a {
+
 	padding: 20px;
 	text-decoration: none;
 	color: #333;
@@ -68,183 +60,154 @@ body {
 	gap: 2em;
 	font-size: 0.9em;
 	transition: background-color 0.3s ease, color 0.3s ease;
+
 }
 
 .sidebar-item a:hover {
-	background-color: var(--primary-color);
-	color: white;
+    background-color: var(--accent-color);
+    color: white;
 }
 
-.sidebar-item a:focus {
-	outline: 2px solid var(--accent-color);
-	background-color: var(--primary-hover-color);
-	color: white;
-}
-
-/* Adjust the logo container */
-.logo {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	padding: 10px;
-}
-
-.logo img {
-	width: 6em;
+.sidebar-item:nth-of-type(2),
+.sidebar-item:nth-of-type(7) {
+    margin-top: auto;
 }
 
 .main {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .header {
-	padding: 10px;
-	display: flex;
-	justify-content: flex-end;
-	background: linear-gradient(
-		to right,
-		#f0f1f5,
-		#dee0e7,
-		#9cb2ef
-	); /* Soft grey to blue gradient */
-	gap: 1em;
-	font-size: 0.8em;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+    background-color: var(--primary-color);
+    gap: 1em;
+    font-size: 0.8em;
 }
 
 .header h1 {
-	margin-right: auto;
-	color: #424242; /* Darker color for better contrast */
-	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin-right: auto;
+    color: white;
 }
 
 .header img {
-	width: 25px;
+    width: 25px;
 }
 
 .searchbar {
-	position: relative;
-	align-content: center;
+    position: relative;
+    align-content: center;
 }
 
 .searchbar input {
-	padding: 6px 40px;
-	border-radius: 20px;
-	border: none;
-	height: 100%;
+    padding: 6px 40px;
+    border-radius: 20px;
+    border: none;
+    height: 100%;
 }
 
 .searchbar input:focus {
-	border: 1px solid var(--primary-color);
+    border: 1px solid var(--primary-color);
 }
 
 .searchbar img {
-	position: absolute;
-	top: 5px;
-	left: 10px;
+    position: absolute;
+    top: 5px;
+    left: 10px;
 }
 
 .dashboard-content {
-	background-color: var(--content-bg-color);
-	flex: 1;
-	padding: 1em;
-	display: flex;
-	flex-direction: column;
+    background-color: var(--content-bg-color);
+    flex: 1;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
 }
 
 .title {
-	margin-bottom: 1em;
+    margin-bottom: 1em;
 }
 
 .card-section {
-	display: flex;
-	gap: 20px; /* Increased gap for breathing room */
-	margin: 20px 0;
-	justify-content: space-around;
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    justify-content: space-around;
 }
 
 .card {
-	background-color: var(--card-bg-color);
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-	border-radius: 10px;
-	padding: 20px;
-	flex: 1;
-	text-align: center;
-	transition: transform 0.3s ease, box-shadow 0.3s ease;
-	border: 2px solid var(--card-border-color);
+    background-color: var(--card-bg-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    flex: 1;
+    text-align: center;
+    transition: transform 0.3s ease;
+    border: 2px solid var(--border-color);
 }
 
 .card:hover {
-	transform: translateY(-5px) scale(1.02); /* Subtle hover scaling */
-	box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Increased shadow on hover */
+    transform: scale(1.05);
 }
 
 .card span {
-	font-size: 1.1em;
-	color: grey;
+    font-size: 1.1em;
+    color: grey;
 }
 
 .card h2 {
-	font-size: 2.2em;
-	margin: 10px 0;
-	color: var(--primary-color);
-}
-
-/* Different header colors for different cards */
-.card:nth-child(1) h2 {
-	color: #2580d0;
-}
-
-.card:nth-child(2) h2 {
-	color: #ff5722;
-}
-
-.card:nth-child(3) h2 {
-	color: #4caf50;
+    font-size: 2.2em;
+    margin: 10px 0;
+    color: var(--primary-color);
 }
 
 .card img {
-	width: 2.5em;
+    width: 2.5em;
+    margin-top: 10px;
 }
 
 .monthly-overview {
-	padding: 10px;
-	border-radius: 10px;
-	border: 2px solid var(--card-border-color);
-	background-color: var(--card-bg-color);
-	height: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #2e7d32;
+    background-color: var(--card-bg-color);
+    height: 100%;
 }
 
 .monthly-overview p {
-	font-size: 1.5em;
-	color: #333;
+    font-size: 1.5em;
+    color: #333;
 }
 
 .monthly-overview img {
-	margin-top: 10px;
-	width: 100%;
-	max-width: 500px;
+    margin-top: 10px;
+    width: 100%;
+    max-width: 500px;
 }
 
-/* Media query for responsive design */
-@media (max-width: 768px) {
-	.card-section {
-		flex-direction: column; /* Stack cards vertically */
-		gap: 20px;
-	}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
 
-	.header {
-		flex-direction: column;
-		align-items: flex-start;
-	}
+table, th, td {
+    border: 1px solid var(--border-color);
+}
 
-	.sidebar-item a {
-		font-size: 1.1em;
-	}
+th, td {
+    padding: 10px;
+    text-align: left;
+}
 
-	.searchbar input {
-		width: 100%;
-	}
+th {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+td {
+    background-color: var(--card-bg-color);
 }

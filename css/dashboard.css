@@ -2,13 +2,13 @@
 @import url("/your-path-to-uicons/css/uicons-rounded-bold.css");
 
 :root {
-	--primary-color: #2580d0;
-	--main-bg-color: #f1e2ff;
-	--border-color: #d870e1;
-	--primary-hover-color: #005dae;
-	--accent-color: #5950ff;
-	--content-bg-color: #f5f5ff;
-	--card-bg-color: #ffffff;
+    --primary-color: #38b000; 
+    --main-bg-color: #e0ffdd; 
+    --border-color: #2e7d32; 
+    --primary-hover-color: #1b5e20; 
+    --accent-color: #2ecc71; 
+    --content-bg-color: #f0fff0; 
+    --card-bg-color: #ffffff; 
 }
 
 * {
@@ -181,4 +181,27 @@ body {
 	margin-top: 10px;
 	width: 100%;
 	max-width: 500px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table, th, td {
+    border: 1px solid var(--border-color);
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+td {
+    background-color: var(--card-bg-color);
 }
