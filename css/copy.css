@@ -53,7 +53,6 @@ body {
 
 .sidebar-links::-webkit-scrollbar-thumb {
 	background-color: var(--primary-color);
-	border-radius: 10px;
 }
 
 .sidebar-item img {
@@ -69,11 +68,6 @@ body {
 	gap: 2em;
 	font-size: 0.9em;
 	transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.sidebar-item:nth-of-type(2),
-.sidebar-item:nth-of-type(9) {
-	margin-top: auto;
 }
 
 .sidebar-item a:hover {
