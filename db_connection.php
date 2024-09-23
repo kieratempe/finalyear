@@ -1,9 +1,9 @@
 <?php
-// Database configuration
-$host = 'localhost'; // Your database host
-$dbname = 'hr_harmony'; // Your database name
-$username = 'root'; // Your database username
-$password = ''; // Your database password
+
+$host = 'localhost'; 
+$dbname = 'hr_harmony'; 
+$username = 'root'; 
+$password = ''; 
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);

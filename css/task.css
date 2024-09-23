@@ -2,13 +2,13 @@
 @import url("/your-path-to-uicons/css/uicons-rounded-bold.css");
 
 :root {
-	--primary-color: #2580d0; /* Updated from --p */
-	--primary-hover-color: #005dae; /* Updated from --phover */
-	--accent-color: #1500ff; /* Updated from --accent */
-	--background-color: #ede4ff; /* Updated from --main */
-	--input-bg: #f0eff5;
-	--input-border: #d8d7db;
-	--border-color: #d2c8d2; /* Remain unchanged */
+    --primary-color: #38b000; 
+    --main-bg-color: #e0ffdd; 
+    --border-color: #2e7d32; 
+    --primary-hover-color: #1b5e20; 
+    --accent-color: #2ecc71; 
+    --content-bg-color: #f0fff0; 
+    --card-bg-color: #ffffff; /
 }
 
 * {
