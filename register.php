@@ -1,41 +1,55 @@
 <?php
+// Connect to the database
 $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "hr_harmony";
+$username = "root"; // Default username for XAMPP
+$password = ""; // Leave empty for XAMPP
+$dbname = "hr_harmony"; // The name of your database
 
 // Create connection
-$conn = new mysqli($servername, $username, $password);
+$conn = new mysqli($servername, $username, $password, $dbname);
+
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Select the database
-$conn->select_db($dbname);
+// Get form data
+$first_name = $_POST['first_name'];
+$last_name = $_POST['last_name'];
+$email = $_POST['email'];
+$phone_number = $_POST['phone_number'];
+$ic_number = $_POST['ic_number'];
+$password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the password
+$position = $_POST['position'];
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get form data
-    $first_name = $_POST["first_name"];
-    $last_name = $_POST["last_name"];
-    $email = $_POST["email"];
-    $phone_number = $_POST["phone_number"];
-    $ic_number = $_POST["ic_number"];
-    $position = $_POST["position"];
-    $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-
-    // Prepared statement
-    $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, phone_number, ic_number, position, password) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssss", $first_name, $last_name, $email, $phone_number, $ic_number, $position, $password);
-
-    if ($stmt->execute()) {
-        echo "Created successfully";
-    } else {
-        echo "Error: " . $stmt->error;
-    }
-
-    $stmt->close();
+// Basic email validation
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    die("Invalid email format");
 }
 
+// Insert data into the database
+$sql = "INSERT INTO users (first_name, last_name, email, phone_number, ic_number, password, position) 
+        VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("sssssss", $first_name, $last_name, $email, $phone_number, $ic_number, $password, $position);
+
+if ($stmt->execute()) {
+    // Get the auto-generated user_id
+    $user_id = $conn->insert_id;
+
+    // Start the session and store user_id
+    session_start();
+    $_SESSION['user_id'] = $user_id;
+    $_SESSION['first_name'] = $first_name;
+
+    // Redirect to login page or dashboard
+    header("Location: dashboard.php");
+    exit;
+} else {
+    echo "Error: " . $stmt->error;
+}
+
+$stmt->close();
 $conn->close();
 ?>

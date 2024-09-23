@@ -9,31 +9,36 @@
 
 	<body>
 		<div class="container">
-			<div class="login-section">
-				<div class="logo-area">
-					<span> HR HARMONY</span>
-					<img src="./img/logo.svg" />
-				</div>
-
-				<div class="input-area">
-					<div class="inputbox">
-						<input type="text" required="required" />
-						<label class="placeholder">Email</label>
+			<div>
+				<form class="login-section" action="login.php" method="post">
+					<div class="logo-area">
+						<img src="img/companylogo.svg" />
+						<span> HR HARMONY</span>
 					</div>
 
-					<div class="inputbox">
-						<input type="password" required="required" />
-						<label class="placeholder">Password</label>
+					<div class="input-area">
+
+							<div class="inputs">
+								<div class="inputbox">
+									<input name="email" type="text" required="required" />
+									<label class="placeholder">Email</label>
+								</div>
+
+								<div class="inputbox">
+									<input name="password" type="password" required="required" />
+									<label class="placeholder">Password</label>
+								</div>
+							</div>
+
+							<div class="login-area">
+								<button>LOGIN</button>
+							</div>
+
+							<div class="signup-area">
+								<span>don't have an account? <a href="./signup.html">Sign up</a></span>
+
 					</div>
-				</div>
-
-				<div class="login-area">
-					<button>LOGIN</button>
-				</div>
-
-				<div class="signup-area">
-					<span>Dont have an account? <a href="./signup.html">Sign up</a></span>
-				</div>
+				</form>
 			</div>
 		</div>
 	</body>
